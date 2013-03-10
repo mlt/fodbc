@@ -62,7 +62,7 @@ contains
     if (err .ne. 0) print *, "Can't request # of columns", err
     print *, "We got ", columns, " columns"
 
-    print *, "speed_max", "start", "track"
+    print *, "  speed_max   start                                               track"
     err = SQLFetch(self%stmt)
     do while (err .eq. 0)
        if (err .ne. 0) print *, "Failed to fetch", err

@@ -19,7 +19,6 @@
 ! along with fodbc.  If not, see <http://www.gnu.org/licenses/>.
 
 module fodbc
-  use iso_c_binding
   use fodbc_types
   implicit none
 

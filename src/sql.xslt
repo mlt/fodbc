@@ -26,7 +26,6 @@
 ! along with fodbc.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
 
 module fodbc
-  use iso_c_binding
   use fodbc_types
   implicit none
 
