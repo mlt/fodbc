@@ -1,0 +1,27 @@
+* Fortran 2003 ODBC bindings
+
+C function interfaces are generated with [[http://www.gccxml.org][GCC-XML]] tool from [[http://www.unixodbc.org/][unixODBC]]
+headers usint XSLT template. The result can be found in =fodbc.f03=.
+
+#+begin_src ditaa :file pin.png :cmdline -r
++----------+ GCC-XML  +---+ xsltproc  +------------------+
+|C headers |--------->|XML|---------->|Fortran interfaces|
++----------+          +---+           +------------------+
+#+end_src
+
+Some defined constant are converted semi-manually with some regexping
+in emacs. Those are in =fodbc_types.f03=.
+
+SQLBindColumn overloaded functions are defined for /SQL\_INTEGER/ & /SQL\_TYPE\_TIMESTAMP/. Those are in =fodbc_ext.f03=.
+
+* Known issues
+
+** Use of GNU extension
+
+=fodbc_ext.f03= has /sizeof/ which is an extension while /c\_sizeof/ is broken because of a [[http://gcc.gnu.org/bugzilla/show_bug.cgi?id=47023][bug]].
+
+** Not all constants are defined
+
+* License
+
+This project is licensed under AGPL.
