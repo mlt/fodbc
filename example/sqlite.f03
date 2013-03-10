@@ -33,19 +33,32 @@ contains
 
   subroutine run(self)
     class(SQLiteTest) :: self
-    integer(C_SHORT) :: columns
-    integer(C_INT),target :: speed_max
+    integer(C_SHORT) :: columns, len
+    integer(C_INT),target :: speed_max, nrow, native
     type(SQL_TIMESTAMP_STRUCT), target :: start
     character(c_char), target :: track(256)
     integer(C_SHORT) :: err
     integer(C_LONG) :: indicator(3)
+    character(c_char), target :: state(6), text(256)
 
     print *, "Running"
     err = SQLAllocHandle(SQL_HANDLE_STMT, self%dbc, self%stmt);
     if (err .ne. 0) print *, "Can't allocate statement handle", err
 
+    err = SQLExecDirect(self%stmt, C_CHAR_"select count(1) from tracks" // C_NULL_CHAR, -3_4)
+    err = SQLFetch(self%stmt)
+    err = SQLGetData(self%stmt, 1_2, SQL_INTEGER, c_loc(nrow), sizeof(nrow), indicator(1))
+    print *, "We got", nrow, "rows"
+
+    if (SQL_SUCCESS /= SQLCloseCursor(self%stmt)) &
+         print *, "Failed to close cursor"
+
     err = SQLPrepare(self%stmt, C_CHAR_"select speed_max, start, track from tracks" // C_NULL_CHAR, -3_4)
     if (err .ne. 0) print *, "Failed to prepare statement", err
+
+    ! err = SQLGetDiagRec(SQL_HANDLE_STMT, self%stmt, 1_2, state, native, text, int2(sizeof(text)), len)
+    ! print *, text(1:len)
+
     err = SQLBindCol(self%stmt, 1_2, speed_max, indicator(1) )
     if (err .ne. 0) print *, "Failed to bind column", err
 
@@ -66,7 +79,7 @@ contains
     err = SQLFetch(self%stmt)
     do while (err .eq. 0)
        if (err .ne. 0) print *, "Failed to fetch", err
-       print *, speed_max, start, track
+       print *, speed_max, start, track(1:indicator(3))
        ! print *, indicator
        err = SQLFetch(self%stmt)
     end do
