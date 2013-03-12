@@ -2,6 +2,7 @@
 
 <xsl:stylesheet version="1.0"
 		xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <xsl:param name="win32" select="0" />
   <xsl:output method="text" />
 
   <xsl:template match="/GCC_XML">
@@ -64,6 +65,11 @@ module fodbc
       <xsl:text>) &amp;&#xa;      bind(C, name="</xsl:text>
       <xsl:value-of select="@name"/>
       <xsl:text>")&#xa;      use, intrinsic :: iso_c_binding&#xa;</xsl:text>
+      <xsl:if test="$win32">
+	<xsl:text>      !GCC$ ATTRIBUTES STDCALL :: </xsl:text>
+	<xsl:value-of select="@name" />
+	<xsl:text>&#xa;</xsl:text>
+      </xsl:if>
 
       <xsl:for-each select="Argument">
 
