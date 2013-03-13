@@ -3,11 +3,9 @@
 C function interfaces are generated with [[http://www.gccxml.org][GCC-XML]] tool from [[http://www.unixodbc.org/][unixODBC]]
 headers usint XSLT template. The result can be found in =fodbc.f03=.
 
-#+begin_src ditaa :file pin.png :cmdline -r
-+----------+ GCC-XML  +---+ xsltproc  +------------------+
-|C headers |--------->|XML|---------->|Fortran interfaces|
-+----------+          +---+           +------------------+
-#+end_src
+: +----------+ GCC-XML  +---+ xsltproc  +------------------+
+: |C headers |--------->|XML|---------->|Fortran interfaces|
+: +----------+          +---+           +------------------+
 
 Some defined constant are converted semi-manually with some regexping
 in emacs. Those are in =fodbc_types.f03=.
