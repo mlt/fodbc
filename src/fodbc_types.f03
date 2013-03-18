@@ -74,12 +74,14 @@ module fodbc_types
   integer(kind=c_short),parameter :: SQL_NEED_DATA = 99
 
 
-  integer(kind=c_short),parameter :: SQL_NTS = -3_2
+  integer(kind=c_int),parameter :: SQL_NTS = -3
+  integer(kind=c_short),parameter :: SQL_NTS2 = -3
   integer(kind=c_short),parameter :: SQL_DRIVER_COMPLETE = 1_2
 
   integer(kind=c_int),parameter :: SQL_ATTR_ODBC_VERSION = 200
 
   integer(kind=c_int),parameter :: SQL_OV_ODBC3 = 3
+  integer(kind=c_int),parameter :: SQL_OV_ODBC3_80 = 380
 
   type SQL_TIMESTAMP_STRUCT
      integer(kind=c_short) :: year
@@ -90,5 +92,9 @@ module fodbc_types
      integer(kind=c_short) :: second
      integer(kind=c_int) :: fraction
   end type SQL_TIMESTAMP_STRUCT
+
+  integer(kind=c_short),parameter :: SQL_PARAM_INPUT = 1
+  integer(kind=c_short),parameter :: SQL_PARAM_INPUT_OUTPUT = 2
+  integer(kind=c_short),parameter :: SQL_PARAM_OUTPUT = 4
 
 end module fodbc_types
