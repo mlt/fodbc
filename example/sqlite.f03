@@ -27,7 +27,7 @@ contains
     err = SQLAllocHandle(SQL_HANDLE_DBC, self%env, self%dbc)
     if (err .ne. 0) print *, "Can't allocate DBC handle", err
     err = SQLDriverConnect(self%dbc, C_NULL_PTR, C_CHAR_"Driver=SQLITE3;Database=/home/mlt/schwinn810.db" // C_NULL_CHAR, &
-         SQL_NTS, C_STR_NULL_PTR, 0_2, C_SHORT_NULL_PTR, SQL_DRIVER_COMPLETE)
+         SQL_NTS2, C_STR_NULL_PTR, 0_2, C_SHORT_NULL_PTR, SQL_DRIVER_COMPLETE)
     if (err .ne. 0) print *, "Can't connect", err
   end function new_SQLiteTest
 
