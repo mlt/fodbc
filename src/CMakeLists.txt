@@ -1,8 +1,6 @@
 cmake_minimum_required(VERSION 2.8)
 enable_language(Fortran)
 
-set (CMAKE_Fortran_MODULE_DIRECTORY ${CMAKE_BINARY_DIR}/modules)
-
 set (FODBC_SRCS
   fodbc_types.f03
   fodbc_ext.f03

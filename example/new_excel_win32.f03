@@ -15,12 +15,13 @@ module class_ExcelTest
 
 contains
 
- function new_ExcelTest() result(self)
+ function new_ExcelTest(fname) result(self)
     type(ExcelTest) :: self
+    character(len=*), intent(in) :: fname
     integer(C_SHORT) :: err
     integer(C_INT),target :: native
-    integer(C_SHORT) :: len
-    character(c_char), target :: state(6), text(256)
+    integer(C_SHORT) :: lens
+    character(256, c_char), target :: state, text
     self = ExcelTest(C_NULL_PTR, C_NULL_PTR, C_NULL_PTR)
     print *, "ExcelTest constructor has been called"
     err = SQLAllocHandle(SQL_HANDLE_ENV, C_NULL_PTR, self%env)
@@ -29,15 +30,14 @@ contains
     if (err .ne. 0) print *, "Can't request version", err
     err = SQLAllocHandle(SQL_HANDLE_DBC, self%env, self%dbc)
     if (err .ne. 0) print *, "Can't allocate DBC handle", err
-    err = SQLDriverConnect(self%dbc, C_NULL_PTR, &
-         C_CHAR_"Driver=Microsoft Excel Driver (*.xls);" &
-         // C_CHAR_"ReadOnly=False;" &
-         // C_CHAR_"DBQ=hello_fortran.xls;" &
-         // C_NULL_CHAR, SQL_NTS2, C_STR_NULL_PTR, 0_2, C_SHORT_NULL_PTR, SQL_DRIVER_COMPLETE)
+    write (text, '("Driver=Microsoft Excel Driver (*.xls);ReadOnly=False;DBQ=", A)'), fname
+    print *, "Connection string: ", text(:len_trim(text))
+    err = SQLDriverConnect(self%dbc, C_NULL_PTR, text &
+         , int(len_trim(text), c_short), C_STR_NULL_PTR, 0_2, C_SHORT_NULL_PTR, SQL_DRIVER_COMPLETE)
     if (err .ne. 0) print *, "Can't connect", err
     err = 1
-    do while (SQL_SUCCESS == SQLGetDiagRec(SQL_HANDLE_DBC, self%dbc, err, state, native, text, int2(sizeof(text)), len))
-       print *, text(1:len)
+    do while (SQL_SUCCESS == SQLGetDiagRec(SQL_HANDLE_DBC, self%dbc, err, state, native, text, int2(sizeof(text)), lens))
+       print *, text(1:lens)
        print *, state
        err = err+1
     end do
@@ -67,9 +67,11 @@ contains
     pts%x = (/((i*a),i=1,100)/)
     pts%y = sin(pts%x)
 
-    err = SQLPrepare(self%stmt, &
-         C_CHAR_"insert into sin values(?,?)" // C_NULL_CHAR, SQL_NTS)
-    if (err .ne. 0) print *, "Failed to prepare statement", err
+    if (SQL_SUCCESS /= SQLPrepare(self%stmt, &
+         C_CHAR_"insert into sin values(?,?)" // C_NULL_CHAR, SQL_NTS)) then
+       print *, "Failed to prepare statement", err
+       return
+    end if
 
     do i = 1,100
        err = SQLBindParameter(self%stmt, 1_2, SQL_PARAM_INPUT, SQL_REAL, &
@@ -112,10 +114,16 @@ end module class_ExcelTest
 
 program test
   use class_ExcelTest
+  use M_kracken
   implicit none
   type(ExcelTest) :: t
+  character(len=255) :: filename
+  integer :: iflen, ier
 
-  t = ExcelTest()
+  call kracken('cmd','-f hello_fortran.xls')
+  call retrev('cmd_f', filename, iflen, ier)
+
+  t = new_ExcelTest(filename(1:iflen))
   call t%run
   call delete_ExcelTest(t)
 
