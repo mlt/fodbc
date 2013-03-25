@@ -39,3 +39,6 @@ if(GCCXML AND XSLTPROC AND HEADER)
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
     )
 endif()
+
+export(TARGETS fodbc FILE fodbc-config.cmake)
+export(PACKAGE FODBC)
