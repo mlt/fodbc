@@ -26,6 +26,12 @@ module fodbc_types
   integer(kind=c_short),parameter :: SQL_HANDLE_STMT = 3
   integer(kind=c_short),parameter :: SQL_HANDLE_DESC = 4
 
+  type(c_ptr),parameter :: SQL_NULL_HENV = C_NULL_PTR
+  type(c_ptr),parameter :: SQL_NULL_HDBC = C_NULL_PTR
+  type(c_ptr),parameter :: SQL_NULL_HSTMT = C_NULL_PTR
+  type(c_ptr),parameter :: SQL_NULL_HANDLE = C_NULL_PTR
+  integer(c_short),parameter :: SQL_MAX_MESSAGE_LENGTH = 512
+
   ! /* SQL data type codes */
   integer(kind=c_short),parameter :: SQL_UNKNOWN_TYPE = 0
   integer(kind=c_short),parameter :: SQL_CHAR = 1

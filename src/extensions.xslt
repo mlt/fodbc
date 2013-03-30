@@ -5,8 +5,10 @@ TODO: Generate this XSLT from sql.xml to avoid hardcoding
 For this we need XSLT 2 that is not supported by xsltproc
  -->
 
-<xsl:stylesheet version="1.0"
-		xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+		xmlns:exsl="http://exslt.org/common"
+                extension-element-prefixes="exsl"
+		version="1.0">
   <xsl:output method="text" />
 
   <xsl:template match="/types"><xsl:text>! DO NOT EDIT! Generated file.
@@ -48,6 +50,10 @@ module fodbc_ext
 
   <xsl:call-template name="decl">
     <xsl:with-param name="fun" select="'SQLBindParameter'" />
+    <xsl:with-param name="extra">
+	<item>_</item>
+	<item>__</item>
+    </xsl:with-param>
   </xsl:call-template>
 
   <xsl:text>&#xa;contains&#xa;</xsl:text>
@@ -63,13 +69,22 @@ end module fodbc_ext
 
   <xsl:template name="decl">
     <xsl:param name="fun" />
+    <xsl:param name="extra" />
     <xsl:text>  interface </xsl:text>
     <xsl:value-of select="$fun" />
     <xsl:text>&#xa;</xsl:text>
     <xsl:for-each select="type">
+      <xsl:variable name="sql" select="@sql" />
       <xsl:text>     module procedure </xsl:text>
       <xsl:value-of select="$fun" />_<xsl:value-of select="@sql" />
       <xsl:text>&#xa;</xsl:text>
+      <xsl:if test="$extra">
+	<xsl:for-each select="exsl:node-set($extra)/item">
+	  <xsl:text>     module procedure </xsl:text>
+	  <xsl:value-of select="$fun" />_<xsl:value-of select="concat($sql, .)" />
+	  <xsl:text>&#xa;</xsl:text>
+	</xsl:for-each>
+      </xsl:if>
     </xsl:for-each>
     <xsl:text>     procedure </xsl:text>
     <xsl:value-of select="$fun" />
@@ -121,6 +136,29 @@ end module fodbc_ext
     ret = SQLBindParameter0(hstmt,ipar,fParamType,<xsl:value-of select="@sql" />,fSqlType, &amp;
     cbColDef,ibScale,c_loc(rgbValue),sizeof(rgbValue),pcbValue)
   end function SQLBindParameter_<xsl:value-of select="@sql" />
+
+  function SQLBindParameter_<xsl:value-of select="@sql" />_ &amp;
+    (hstmt,ipar,fParamType,rgbValue,pcbValue) result(ret)
+    integer(kind=c_short) :: ret
+    type(c_ptr),intent(in),value :: hstmt
+    integer(kind=c_short),intent(in),value :: ipar
+    integer(kind=c_short),intent(in),value :: fParamType
+    <xsl:value-of select="@fortran" />,target :: rgbValue
+    integer(kind=c_long),intent(out),optional :: pcbValue
+    ret = SQLBindParameter0(hstmt,ipar,fParamType,<xsl:value-of select="@sql" />, &amp;
+    <xsl:value-of select="@sql" />, 0, 0_2,c_loc(rgbValue),sizeof(rgbValue),pcbValue)
+  end function SQLBindParameter_<xsl:value-of select="@sql" />_
+
+  function SQLBindParameter_<xsl:value-of select="@sql" />__ &amp;
+    (hstmt,ipar,rgbValue,pcbValue) result(ret)
+    integer(kind=c_short) :: ret
+    type(c_ptr),intent(in),value :: hstmt
+    integer(kind=c_short),intent(in),value :: ipar
+    <xsl:value-of select="@fortran" />,target :: rgbValue
+    integer(kind=c_long),intent(out),optional :: pcbValue
+    ret = SQLBindParameter0(hstmt,ipar,SQL_PARAM_INPUT,<xsl:value-of select="@sql" />, &amp;
+    <xsl:value-of select="@sql" />, 0, 0_2,c_loc(rgbValue),sizeof(rgbValue),pcbValue)
+  end function SQLBindParameter_<xsl:value-of select="@sql" />__
   </xsl:template>
 
 </xsl:stylesheet>

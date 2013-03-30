@@ -22,7 +22,6 @@ module fodbc_ext
   implicit none
 
   interface SQLBindCol
-     module procedure SQLBindCol_SQL_SMALLINT
      module procedure SQLBindCol_SQL_INTEGER
      module procedure SQLBindCol_SQL_REAL
      module procedure SQLBindCol_SQL_DOUBLE
@@ -31,7 +30,6 @@ module fodbc_ext
   end interface SQLBindCol
 
   interface SQLGetData
-     module procedure SQLGetData_SQL_SMALLINT
      module procedure SQLGetData_SQL_INTEGER
      module procedure SQLGetData_SQL_REAL
      module procedure SQLGetData_SQL_DOUBLE
@@ -40,53 +38,23 @@ module fodbc_ext
   end interface SQLGetData
 
   interface SQLBindParameter
-     module procedure SQLBindParameter_SQL_SMALLINT
      module procedure SQLBindParameter_SQL_INTEGER
+     module procedure SQLBindParameter_SQL_INTEGER_
+     module procedure SQLBindParameter_SQL_INTEGER__
      module procedure SQLBindParameter_SQL_REAL
+     module procedure SQLBindParameter_SQL_REAL_
+     module procedure SQLBindParameter_SQL_REAL__
      module procedure SQLBindParameter_SQL_DOUBLE
+     module procedure SQLBindParameter_SQL_DOUBLE_
+     module procedure SQLBindParameter_SQL_DOUBLE__
      module procedure SQLBindParameter_SQL_TYPE_TIMESTAMP
+     module procedure SQLBindParameter_SQL_TYPE_TIMESTAMP_
+     module procedure SQLBindParameter_SQL_TYPE_TIMESTAMP__
      procedure SQLBindParameter0
   end interface SQLBindParameter
 
 contains
 
-  function SQLBindCol_SQL_SMALLINT &
-       (StatementHandle,ColumnNumber,TargetValue,StrLen_or_Ind) result(ret)
-    integer(kind=c_short) :: ret
-    type(c_ptr),intent(in),value :: StatementHandle
-    integer(kind=c_short),intent(in),value :: ColumnNumber
-    integer(kind=c_short),target :: TargetValue
-    integer(kind=c_long),intent(out),optional :: StrLen_or_Ind
-    ret = SQLBindCol0(StatementHandle,ColumnNumber,SQL_SMALLINT, &
-        c_loc(TargetValue),sizeof(TargetValue), StrLen_or_Ind)
-  end function SQLBindCol_SQL_SMALLINT
-
-  function SQLGetData_SQL_SMALLINT &
-        (StatementHandle,ColumnNumber,TargetValue,StrLen_or_Ind) result(ret)
-    integer(kind=c_short) :: ret
-    type(c_ptr),intent(in),value :: StatementHandle
-    integer(kind=c_short),intent(in),value :: ColumnNumber
-    integer(kind=c_short),target :: TargetValue
-    integer(kind=c_long),intent(out),optional :: StrLen_or_Ind
-    ret = SQLGetData0(StatementHandle,ColumnNumber,SQL_SMALLINT, &
-        c_loc(TargetValue),sizeof(TargetValue),StrLen_or_Ind)
-  end function SQLGetData_SQL_SMALLINT
-
-  function SQLBindParameter_SQL_SMALLINT &
-    (hstmt,ipar,fParamType,fSqlType, &
-    cbColDef,ibScale,rgbValue,pcbValue) result(ret)
-    integer(kind=c_short) :: ret
-    type(c_ptr),intent(in),value :: hstmt
-    integer(kind=c_short),intent(in),value :: ipar
-    integer(kind=c_short),intent(in),value :: fParamType
-    integer(kind=c_short),intent(in),value :: fSqlType
-    integer(kind=c_long),intent(in),value :: cbColDef
-    integer(kind=c_short),intent(in),value :: ibScale
-    integer(kind=c_short),target :: rgbValue
-    integer(kind=c_long),intent(out),optional :: pcbValue
-    ret = SQLBindParameter0(hstmt,ipar,fParamType,SQL_SMALLINT,fSqlType, &
-    cbColDef,ibScale,c_loc(rgbValue),sizeof(rgbValue),pcbValue)
-  end function SQLBindParameter_SQL_SMALLINT
   function SQLBindCol_SQL_INTEGER &
        (StatementHandle,ColumnNumber,TargetValue,StrLen_or_Ind) result(ret)
     integer(kind=c_short) :: ret
@@ -124,6 +92,30 @@ contains
     ret = SQLBindParameter0(hstmt,ipar,fParamType,SQL_INTEGER,fSqlType, &
     cbColDef,ibScale,c_loc(rgbValue),sizeof(rgbValue),pcbValue)
   end function SQLBindParameter_SQL_INTEGER
+
+  function SQLBindParameter_SQL_INTEGER_ &
+    (hstmt,ipar,fParamType,rgbValue,pcbValue) result(ret)
+    integer(kind=c_short) :: ret
+    type(c_ptr),intent(in),value :: hstmt
+    integer(kind=c_short),intent(in),value :: ipar
+    integer(kind=c_short),intent(in),value :: fParamType
+    integer(kind=c_int),target :: rgbValue
+    integer(kind=c_long),intent(out),optional :: pcbValue
+    ret = SQLBindParameter0(hstmt,ipar,fParamType,SQL_INTEGER, &
+    SQL_INTEGER, 0, 0_2,c_loc(rgbValue),sizeof(rgbValue),pcbValue)
+  end function SQLBindParameter_SQL_INTEGER_
+
+  function SQLBindParameter_SQL_INTEGER__ &
+    (hstmt,ipar,rgbValue,pcbValue) result(ret)
+    integer(kind=c_short) :: ret
+    type(c_ptr),intent(in),value :: hstmt
+    integer(kind=c_short),intent(in),value :: ipar
+    integer(kind=c_int),target :: rgbValue
+    integer(kind=c_long),intent(out),optional :: pcbValue
+    ret = SQLBindParameter0(hstmt,ipar,SQL_PARAM_INPUT,SQL_INTEGER, &
+    SQL_INTEGER, 0, 0_2,c_loc(rgbValue),sizeof(rgbValue),pcbValue)
+  end function SQLBindParameter_SQL_INTEGER__
+  
   function SQLBindCol_SQL_REAL &
        (StatementHandle,ColumnNumber,TargetValue,StrLen_or_Ind) result(ret)
     integer(kind=c_short) :: ret
@@ -161,6 +153,30 @@ contains
     ret = SQLBindParameter0(hstmt,ipar,fParamType,SQL_REAL,fSqlType, &
     cbColDef,ibScale,c_loc(rgbValue),sizeof(rgbValue),pcbValue)
   end function SQLBindParameter_SQL_REAL
+
+  function SQLBindParameter_SQL_REAL_ &
+    (hstmt,ipar,fParamType,rgbValue,pcbValue) result(ret)
+    integer(kind=c_short) :: ret
+    type(c_ptr),intent(in),value :: hstmt
+    integer(kind=c_short),intent(in),value :: ipar
+    integer(kind=c_short),intent(in),value :: fParamType
+    real(kind=c_float),target :: rgbValue
+    integer(kind=c_long),intent(out),optional :: pcbValue
+    ret = SQLBindParameter0(hstmt,ipar,fParamType,SQL_REAL, &
+    SQL_REAL, 0, 0_2,c_loc(rgbValue),sizeof(rgbValue),pcbValue)
+  end function SQLBindParameter_SQL_REAL_
+
+  function SQLBindParameter_SQL_REAL__ &
+    (hstmt,ipar,rgbValue,pcbValue) result(ret)
+    integer(kind=c_short) :: ret
+    type(c_ptr),intent(in),value :: hstmt
+    integer(kind=c_short),intent(in),value :: ipar
+    real(kind=c_float),target :: rgbValue
+    integer(kind=c_long),intent(out),optional :: pcbValue
+    ret = SQLBindParameter0(hstmt,ipar,SQL_PARAM_INPUT,SQL_REAL, &
+    SQL_REAL, 0, 0_2,c_loc(rgbValue),sizeof(rgbValue),pcbValue)
+  end function SQLBindParameter_SQL_REAL__
+  
   function SQLBindCol_SQL_DOUBLE &
        (StatementHandle,ColumnNumber,TargetValue,StrLen_or_Ind) result(ret)
     integer(kind=c_short) :: ret
@@ -198,6 +214,30 @@ contains
     ret = SQLBindParameter0(hstmt,ipar,fParamType,SQL_DOUBLE,fSqlType, &
     cbColDef,ibScale,c_loc(rgbValue),sizeof(rgbValue),pcbValue)
   end function SQLBindParameter_SQL_DOUBLE
+
+  function SQLBindParameter_SQL_DOUBLE_ &
+    (hstmt,ipar,fParamType,rgbValue,pcbValue) result(ret)
+    integer(kind=c_short) :: ret
+    type(c_ptr),intent(in),value :: hstmt
+    integer(kind=c_short),intent(in),value :: ipar
+    integer(kind=c_short),intent(in),value :: fParamType
+    real(kind=c_double),target :: rgbValue
+    integer(kind=c_long),intent(out),optional :: pcbValue
+    ret = SQLBindParameter0(hstmt,ipar,fParamType,SQL_DOUBLE, &
+    SQL_DOUBLE, 0, 0_2,c_loc(rgbValue),sizeof(rgbValue),pcbValue)
+  end function SQLBindParameter_SQL_DOUBLE_
+
+  function SQLBindParameter_SQL_DOUBLE__ &
+    (hstmt,ipar,rgbValue,pcbValue) result(ret)
+    integer(kind=c_short) :: ret
+    type(c_ptr),intent(in),value :: hstmt
+    integer(kind=c_short),intent(in),value :: ipar
+    real(kind=c_double),target :: rgbValue
+    integer(kind=c_long),intent(out),optional :: pcbValue
+    ret = SQLBindParameter0(hstmt,ipar,SQL_PARAM_INPUT,SQL_DOUBLE, &
+    SQL_DOUBLE, 0, 0_2,c_loc(rgbValue),sizeof(rgbValue),pcbValue)
+  end function SQLBindParameter_SQL_DOUBLE__
+  
   function SQLBindCol_SQL_TYPE_TIMESTAMP &
        (StatementHandle,ColumnNumber,TargetValue,StrLen_or_Ind) result(ret)
     integer(kind=c_short) :: ret
@@ -235,6 +275,30 @@ contains
     ret = SQLBindParameter0(hstmt,ipar,fParamType,SQL_TYPE_TIMESTAMP,fSqlType, &
     cbColDef,ibScale,c_loc(rgbValue),sizeof(rgbValue),pcbValue)
   end function SQLBindParameter_SQL_TYPE_TIMESTAMP
+
+  function SQLBindParameter_SQL_TYPE_TIMESTAMP_ &
+    (hstmt,ipar,fParamType,rgbValue,pcbValue) result(ret)
+    integer(kind=c_short) :: ret
+    type(c_ptr),intent(in),value :: hstmt
+    integer(kind=c_short),intent(in),value :: ipar
+    integer(kind=c_short),intent(in),value :: fParamType
+    type(SQL_TIMESTAMP_STRUCT),target :: rgbValue
+    integer(kind=c_long),intent(out),optional :: pcbValue
+    ret = SQLBindParameter0(hstmt,ipar,fParamType,SQL_TYPE_TIMESTAMP, &
+    SQL_TYPE_TIMESTAMP, 0, 0_2,c_loc(rgbValue),sizeof(rgbValue),pcbValue)
+  end function SQLBindParameter_SQL_TYPE_TIMESTAMP_
+
+  function SQLBindParameter_SQL_TYPE_TIMESTAMP__ &
+    (hstmt,ipar,rgbValue,pcbValue) result(ret)
+    integer(kind=c_short) :: ret
+    type(c_ptr),intent(in),value :: hstmt
+    integer(kind=c_short),intent(in),value :: ipar
+    type(SQL_TIMESTAMP_STRUCT),target :: rgbValue
+    integer(kind=c_long),intent(out),optional :: pcbValue
+    ret = SQLBindParameter0(hstmt,ipar,SQL_PARAM_INPUT,SQL_TYPE_TIMESTAMP, &
+    SQL_TYPE_TIMESTAMP, 0, 0_2,c_loc(rgbValue),sizeof(rgbValue),pcbValue)
+  end function SQLBindParameter_SQL_TYPE_TIMESTAMP__
+  
 
 end module fodbc_ext
   

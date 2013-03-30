@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <types>
+  <!-- FIXME: The following somehow causes problems
   <type sql="SQL_SMALLINT" fortran="integer(kind=c_short)" />
+  -->
   <type sql="SQL_INTEGER" fortran="integer(kind=c_int)" />
   <type sql="SQL_REAL" fortran="real(kind=c_float)" />
   <type sql="SQL_DOUBLE" fortran="real(kind=c_double)" />
