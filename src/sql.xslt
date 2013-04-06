@@ -4,6 +4,7 @@
 		xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
   <xsl:param name="win32" select="0" />
   <xsl:output method="text" />
+  <xsl:include href="extensions.xslt" />
 
   <xsl:template match="/GCC_XML">
     <xsl:text>! DO NOT EDIT!
@@ -30,11 +31,55 @@ module fodbc
   use fodbc_types
   implicit none
 
-  interface
-
 </xsl:text>
 
     <xsl:for-each select="Function[not(starts-with(@name, '_') or @name='FireVSDebugEvent')]">
+      <xsl:text>  interface </xsl:text>
+      <xsl:value-of select="@name"/>
+      <xsl:text>&#xa;</xsl:text>
+      <xsl:apply-templates select="." />
+      <xsl:text>  end interface </xsl:text>
+      <xsl:value-of select="@name"/>
+      <xsl:text>&#xa;&#xa;</xsl:text>
+    </xsl:for-each>
+
+    <xsl:text>contains&#xa;</xsl:text>
+
+    <xsl:for-each select="document('types.xml')/types/type">
+      <xsl:call-template name="extra" />
+    </xsl:for-each>
+
+    <xsl:text>&#xa;end module fodbc&#xa;</xsl:text>
+
+  </xsl:template>
+
+  <xsl:template match="Function[@name='SQLGetData' or @name='SQLBindCol']">
+    <xsl:call-template name="default" />
+    <xsl:variable name="fun" select="@name" />
+    <xsl:for-each select="document('types.xml')/types/type">
+      <xsl:text>    module procedure </xsl:text>
+      <xsl:value-of select="$fun" /><xsl:value-of select="@suffix" />
+      <xsl:text>&#xa;</xsl:text>
+    </xsl:for-each>
+  </xsl:template>
+
+  <xsl:template match="Function[@name='SQLBindParameter']">
+    <xsl:call-template name="default" />
+    <xsl:variable name="fun" select="@name" />
+    <xsl:for-each select="document('types.xml')/types/type">
+      <xsl:text>    module procedure </xsl:text>
+      <xsl:value-of select="$fun" /><xsl:value-of select="@suffix" />
+      <xsl:text>&#xa;</xsl:text>
+      <xsl:text>    module procedure </xsl:text>
+      <xsl:value-of select="$fun" /><xsl:value-of select="@suffix" />
+      <xsl:text>_&#xa;</xsl:text>
+      <xsl:text>    module procedure </xsl:text>
+      <xsl:value-of select="$fun" /><xsl:value-of select="@suffix" />
+      <xsl:text>__&#xa;</xsl:text>
+    </xsl:for-each>
+  </xsl:template>
+
+  <xsl:template match="Function" name="default">
 
       <xsl:text>    </xsl:text>
       <xsl:call-template name="type">
@@ -43,7 +88,7 @@ module fodbc
 
       <xsl:text> function </xsl:text>
       <xsl:value-of select="@name"/>
-      <xsl:text> &amp;&#xa;      (</xsl:text>
+      <xsl:text>0 &amp;&#xa;      (</xsl:text>
 
       <xsl:for-each select="Argument">
 	<xsl:choose>
@@ -93,12 +138,9 @@ module fodbc
       </xsl:for-each>
       <xsl:text>    end function </xsl:text>
       <xsl:value-of select="@name"/>
-      <xsl:text>&#xa;&#xa;</xsl:text>
-
-    </xsl:for-each>
-    <xsl:text>  end interface&#xa;end module fodbc&#xa;</xsl:text>
-
+      <xsl:text>0&#xa;</xsl:text>
   </xsl:template>
+
 
   <xsl:variable name="char_type">character(kind=c_char)</xsl:variable>
   <xsl:variable name="ptr_type">type(c_ptr)</xsl:variable>
@@ -129,9 +171,6 @@ module fodbc
 	  <xsl:choose>
 	    <xsl:when test="$ptr>1 or ($ptr=1 and $t!=$ptr_type and $t!=$char_type)">
 	      <xsl:text>,intent(out)</xsl:text>
-	    </xsl:when>
-	    <xsl:when test="$t=$char_type">
-	      <xsl:text>,dimension(*),intent(in)</xsl:text>
 	    </xsl:when>
 	    <xsl:otherwise>
 	      <xsl:text>,intent(in),value</xsl:text>

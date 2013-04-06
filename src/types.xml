@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <types>
   <!-- FIXME: The following somehow causes problems
-  <type sql="SQL_SMALLINT" fortran="integer(kind=c_short)" />
+  <type suffix="Short" sql="SQL_SMALLINT" fortran="integer(kind=c_short)" />
   -->
-  <type sql="SQL_INTEGER" fortran="integer(kind=c_int)" />
-  <type sql="SQL_REAL" fortran="real(kind=c_float)" />
-  <type sql="SQL_DOUBLE" fortran="real(kind=c_double)" />
-  <type sql="SQL_TYPE_TIMESTAMP" fortran="type(SQL_TIMESTAMP_STRUCT)" />
+  <type suffix="Int" sql="SQL_INTEGER" fortran="integer(kind=c_int)" />
+  <type suffix="Real" sql="SQL_REAL" fortran="real(kind=c_float)" />
+  <type suffix="Double" sql="SQL_DOUBLE" fortran="real(kind=c_double)" />
+  <type suffix="TimeStamp" sql="SQL_TYPE_TIMESTAMP" fortran="type(SQL_TIMESTAMP_STRUCT)" />
 </types>
