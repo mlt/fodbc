@@ -1,5 +1,5 @@
 module class_SQLiteTest
-  use fodbc_ext
+  use fodbc
   implicit none
 
   type :: SQLiteTest

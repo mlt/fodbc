@@ -1,5 +1,5 @@
 module class_AccessTest
-  use fodbc_ext
+  use fodbc
   implicit none
 
   type :: AccessTest
@@ -20,7 +20,8 @@ contains
     integer(C_SHORT) :: err
     integer(C_INT),target :: native
     integer(C_SHORT) :: len
-    character(c_char), target :: state(6), text(256)
+    character(6, c_char), target :: state
+    character(256, c_char), target :: text
     self = AccessTest(C_NULL_PTR, C_NULL_PTR, C_NULL_PTR)
     print *, "AccessTest constructor has been called"
     err = SQLAllocHandle(SQL_HANDLE_ENV, C_NULL_PTR, self%env)
@@ -33,7 +34,7 @@ contains
          C_CHAR_"Driver=Microsoft Access Driver (*.mdb);DBQ=D:\webdata\soils\soil_mn091\soildb_MN_2003.mdb" // C_NULL_CHAR, &
          SQL_NTS2, C_STR_NULL_PTR, 0_2, C_SHORT_NULL_PTR, SQL_DRIVER_COMPLETE)
     if (err .ne. 0) print *, "Can't connect", err
-    if (SQL_SUCCESS == SQLGetDiagRec(SQL_HANDLE_DBC, self%dbc, 1_2, state, native, text, int2(sizeof(text)), len)) &
+    if (SQL_SUCCESS == SQLGetDiagRec(SQL_HANDLE_DBC, self%dbc, 1_2, state, native, text, int(c_sizeof(text), 2), len)) &
          print *, text(1:len)
   end function new_AccessTest
 
@@ -45,7 +46,8 @@ contains
     character(c_char), target :: track(256)
     integer(C_SHORT) :: err
     integer(C_LONG) :: indicator(3), iName
-    character(c_char), target :: state(6), text(256)
+    character(256, c_char), target :: text
+    character(6, c_char), target :: state
     character(c_char),target :: name(256)
 
     print *, "Running"
@@ -74,7 +76,7 @@ contains
          255, 0_2, c_loc(name), 0, iName )
     if (err .ne. 0) print *, "Failed to bind parameter", err
 
-    if (SQL_SUCCESS == SQLGetDiagRec(SQL_HANDLE_STMT, self%stmt, 1_2, state, native, text, int2(sizeof(text)), len)) &
+    if (SQL_SUCCESS == SQLGetDiagRec(SQL_HANDLE_STMT, self%stmt, 1_2, state, native, text, int(c_sizeof(text), 2), len)) &
          print *, text(1:len)
 
     err = SQLBindCol(self%stmt, 1_2, speed_max, indicator(1) )

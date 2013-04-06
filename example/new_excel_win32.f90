@@ -1,5 +1,5 @@
 module class_ExcelTest
-  use fodbc_ext
+  use fodbc
   implicit none
 
   type :: ExcelTest
@@ -21,7 +21,8 @@ contains
     integer(C_SHORT) :: err
     integer(C_INT),target :: native
     integer(C_SHORT) :: lens
-    character(256, c_char), target :: state, text
+    character(256, c_char), target :: text
+    character(6, c_char), target :: state
     self = ExcelTest(C_NULL_PTR, C_NULL_PTR, C_NULL_PTR)
     print *, "ExcelTest constructor has been called"
     err = SQLAllocHandle(SQL_HANDLE_ENV, C_NULL_PTR, self%env)
@@ -54,7 +55,8 @@ contains
     integer :: i
     integer(C_INT),target :: native
     integer(C_SHORT) :: err, len
-    character(c_char), target :: state(6), text(256)
+    character(256, c_char), target :: text
+    character(6, c_char), target :: state
 
     print *, "Running"
     err = SQLAllocHandle(SQL_HANDLE_STMT, self%dbc, self%stmt);
@@ -84,7 +86,7 @@ contains
 
        err = SQLExecute(self%stmt)
        if (err .ne. 0) print *, "Failed to execute statement", err
-       if (SQL_SUCCESS == SQLGetDiagRec(SQL_HANDLE_STMT, self%stmt, 1_2, state, native, text, int2(sizeof(text)), len)) &
+       if (SQL_SUCCESS == SQLGetDiagRec(SQL_HANDLE_STMT, self%stmt, 1_2, state, native, text, int(c_sizeof(text), 2), len)) &
             print *, text(1:len)
     end do
   end subroutine run
