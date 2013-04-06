@@ -82,12 +82,12 @@ contains
     err = SQLBindCol(self%stmt, 1_2, speed_max, indicator(1) )
     if (err .ne. 0) print *, "Failed to bind column", err
 
-    err = SQLBindCol(self%stmt, 2_2, SQL_CHAR, c_loc(track), sizeof(track), indicator(3) )
+    err = SQLBindCol(self%stmt, 2_2, SQL_CHAR, c_loc(track), c_sizeof(track), indicator(3) )
     if (err .ne. 0) print *, "Failed to bind column", err
 
     err = SQLExecute(self%stmt)
     if (err .ne. 0) print *, "Failed to execute statement", err
-    if (SQL_SUCCESS == SQLGetDiagRec(SQL_HANDLE_STMT, self%stmt, 1_2, state, native, text, int2(sizeof(text)), len)) &
+    if (SQL_SUCCESS == SQLGetDiagRec(SQL_HANDLE_STMT, self%stmt, 1_2, state, native, text, int(c_sizeof(text), 2), len)) &
          print *, text(1:len)
 
     err = SQLNumResultCols(self%stmt, columns)

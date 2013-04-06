@@ -37,7 +37,7 @@ contains
          , int(len_trim(text), c_short), C_STR_NULL_PTR, 0_2, C_SHORT_NULL_PTR, SQL_DRIVER_COMPLETE)
     if (err .ne. 0) print *, "Can't connect", err
     err = 1
-    do while (SQL_SUCCESS == SQLGetDiagRec(SQL_HANDLE_DBC, self%dbc, err, state, native, text, int2(sizeof(text)), lens))
+    do while (SQL_SUCCESS == SQLGetDiagRec(SQL_HANDLE_DBC, self%dbc, err, state, native, text, int(c_sizeof(text), 2), lens))
        print *, text(1:lens)
        print *, state
        err = err+1

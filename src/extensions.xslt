@@ -11,7 +11,7 @@
     <xsl:value-of select="@fortran" />,target :: TargetValue
     integer(kind=c_long),intent(out),optional :: StrLen_or_Ind
     ret = SQLBindCol0(StatementHandle,ColumnNumber,<xsl:value-of select="@sql" />, &amp;
-        c_loc(TargetValue),sizeof(TargetValue), StrLen_or_Ind)
+        c_loc(TargetValue),c_sizeof(TargetValue), StrLen_or_Ind)
   end function SQLBindCol<xsl:value-of select="@suffix" />
 
   function SQLGetData<xsl:value-of select="@suffix" /> &amp;
@@ -22,7 +22,7 @@
     <xsl:value-of select="@fortran" />,target :: TargetValue
     integer(kind=c_long),intent(out),optional :: StrLen_or_Ind
     ret = SQLGetData0(StatementHandle,ColumnNumber,<xsl:value-of select="@sql" />, &amp;
-        c_loc(TargetValue),sizeof(TargetValue),StrLen_or_Ind)
+        c_loc(TargetValue),c_sizeof(TargetValue),StrLen_or_Ind)
   end function SQLGetData<xsl:value-of select="@suffix" />
 
   function SQLBindParameter<xsl:value-of select="@suffix" /> &amp;
@@ -38,7 +38,7 @@
     <xsl:value-of select="@fortran" />,target :: rgbValue
     integer(kind=c_long),intent(out),optional :: pcbValue
     ret = SQLBindParameter0(hstmt,ipar,fParamType,<xsl:value-of select="@sql" />,fSqlType, &amp;
-    cbColDef,ibScale,c_loc(rgbValue),sizeof(rgbValue),pcbValue)
+    cbColDef,ibScale,c_loc(rgbValue),c_sizeof(rgbValue),pcbValue)
   end function SQLBindParameter<xsl:value-of select="@suffix" />
 
   function SQLBindParameter<xsl:value-of select="@suffix" />_ &amp;
@@ -50,7 +50,7 @@
     <xsl:value-of select="@fortran" />,target :: rgbValue
     integer(kind=c_long),intent(out),optional :: pcbValue
     ret = SQLBindParameter0(hstmt,ipar,fParamType,<xsl:value-of select="@sql" />, &amp;
-    <xsl:value-of select="@sql" />, 0, 0_2,c_loc(rgbValue),sizeof(rgbValue),pcbValue)
+    <xsl:value-of select="@sql" />, 0, 0_2,c_loc(rgbValue),c_sizeof(rgbValue),pcbValue)
   end function SQLBindParameter<xsl:value-of select="@suffix" />_
 
   function SQLBindParameter<xsl:value-of select="@suffix" />__ &amp;
@@ -61,7 +61,7 @@
     <xsl:value-of select="@fortran" />,target :: rgbValue
     integer(kind=c_long),intent(out),optional :: pcbValue
     ret = SQLBindParameter0(hstmt,ipar,SQL_PARAM_INPUT,<xsl:value-of select="@sql" />, &amp;
-    <xsl:value-of select="@sql" />, 0, 0_2,c_loc(rgbValue),sizeof(rgbValue),pcbValue)
+    <xsl:value-of select="@sql" />, 0, 0_2,c_loc(rgbValue),c_sizeof(rgbValue),pcbValue)
   end function SQLBindParameter<xsl:value-of select="@suffix" />__
 </xsl:template>
 

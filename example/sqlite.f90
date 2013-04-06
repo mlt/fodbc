@@ -47,7 +47,7 @@ contains
 
     err = SQLExecDirect(self%stmt, C_CHAR_"select count(1) from tracks" // C_NULL_CHAR, -3_4)
     err = SQLFetch(self%stmt)
-    err = SQLGetData(self%stmt, 1_2, SQL_INTEGER, c_loc(nrow), sizeof(nrow), indicator(1))
+    err = SQLGetData(self%stmt, 1_2, SQL_INTEGER, c_loc(nrow), c_sizeof(nrow), indicator(1))
     print *, "We got", nrow, "rows"
 
     if (SQL_SUCCESS /= SQLCloseCursor(self%stmt)) &
@@ -65,7 +65,7 @@ contains
     err = SQLBindCol(self%stmt, 2_2, start, indicator(2) )
     if (err .ne. 0) print *, "Failed to bind column", err
 
-    err = SQLBindCol0(self%stmt, 3_2, SQL_CHAR, c_loc(track), sizeof(track), indicator(3) )
+    err = SQLBindCol0(self%stmt, 3_2, SQL_CHAR, c_loc(track), c_sizeof(track), indicator(3) )
     if (err .ne. 0) print *, "Failed to bind column", err
 
     err = SQLExecute(self%stmt)
