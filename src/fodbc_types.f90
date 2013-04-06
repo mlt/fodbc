@@ -89,7 +89,7 @@ module fodbc_types
   integer(kind=c_int),parameter :: SQL_OV_ODBC3 = 3
   integer(kind=c_int),parameter :: SQL_OV_ODBC3_80 = 380
 
-  type SQL_TIMESTAMP_STRUCT
+  type, bind(C) :: SQL_TIMESTAMP_STRUCT
      integer(kind=c_short) :: year
      integer(kind=c_short) :: month
      integer(kind=c_short) :: day
