@@ -113,7 +113,7 @@ module fodbc
       <xsl:if test="$win32">
         <xsl:text>      !GCC$ ATTRIBUTES STDCALL :: </xsl:text>
         <xsl:value-of select="@name" />
-        <xsl:text>&#xa;</xsl:text>
+        <xsl:text>0&#xa;</xsl:text>
       </xsl:if>
 
       <xsl:for-each select="Argument">
