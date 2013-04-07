@@ -32,6 +32,22 @@ module fodbc_types
   type(c_ptr),parameter :: SQL_NULL_HANDLE = C_NULL_PTR
   integer(c_short),parameter :: SQL_MAX_MESSAGE_LENGTH = 512
 
+  ! /* identifiers of fields in the diagnostics area */
+  ! #if (ODBCVER >= 0x0300)
+  integer(c_short), parameter :: SQL_DIAG_RETURNCODE = 1
+  integer(c_short), parameter :: SQL_DIAG_NUMBER = 2
+  integer(c_short), parameter :: SQL_DIAG_ROW_COUNT = 3
+  integer(c_short), parameter :: SQL_DIAG_SQLSTATE = 4
+  integer(c_short), parameter :: SQL_DIAG_NATIVE = 5
+  integer(c_short), parameter :: SQL_DIAG_MESSAGE_TEXT = 6
+  integer(c_short), parameter :: SQL_DIAG_DYNAMIC_FUNCTION = 7
+  integer(c_short), parameter :: SQL_DIAG_CLASS_ORIGIN = 8
+  integer(c_short), parameter :: SQL_DIAG_SUBCLASS_ORIGIN = 9
+  integer(c_short), parameter :: SQL_DIAG_CONNECTION_NAME = 10
+  integer(c_short), parameter :: SQL_DIAG_SERVER_NAME = 11
+  integer(c_short), parameter :: SQL_DIAG_DYNAMIC_FUNCTION_CODE = 12
+  ! #endif
+
   ! /* SQL data type codes */
   integer(kind=c_short),parameter :: SQL_UNKNOWN_TYPE = 0
   integer(kind=c_short),parameter :: SQL_CHAR = 1
