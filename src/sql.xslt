@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <xsl:stylesheet version="1.0"
-		xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+                xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
   <xsl:param name="win32" select="0" />
   <xsl:output method="text" />
   <xsl:include href="extensions.xslt" />
@@ -83,7 +83,7 @@ module fodbc
 
       <xsl:text>    </xsl:text>
       <xsl:call-template name="type">
-	<xsl:with-param name="type" select="@returns" />
+        <xsl:with-param name="type" select="@returns" />
       </xsl:call-template>
 
       <xsl:text> function </xsl:text>
@@ -91,49 +91,49 @@ module fodbc
       <xsl:text>0 &amp;&#xa;      (</xsl:text>
 
       <xsl:for-each select="Argument">
-	<xsl:choose>
-	  <xsl:when test="@name">
-	    <xsl:value-of select="@name" />
-	  </xsl:when>
-	  <xsl:otherwise>
-	    <xsl:value-of select="concat('var', position())" />
-	  </xsl:otherwise>
-	</xsl:choose>
-	<xsl:if test="position() != last()">
+        <xsl:choose>
+          <xsl:when test="@name">
+            <xsl:value-of select="@name" />
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="concat('var', position())" />
+          </xsl:otherwise>
+        </xsl:choose>
+        <xsl:if test="position() != last()">
           <xsl:text>,</xsl:text>
-	  <xsl:if test="position() mod 5 = 0">
-	    <xsl:text> &amp;&#xa;      </xsl:text>
-	  </xsl:if>
-	</xsl:if>
+          <xsl:if test="position() mod 5 = 0">
+            <xsl:text> &amp;&#xa;      </xsl:text>
+          </xsl:if>
+        </xsl:if>
       </xsl:for-each>
 
       <xsl:text>) &amp;&#xa;      bind(C, name="</xsl:text>
       <xsl:value-of select="@name"/>
       <xsl:text>")&#xa;      use, intrinsic :: iso_c_binding&#xa;</xsl:text>
       <xsl:if test="$win32">
-	<xsl:text>      !GCC$ ATTRIBUTES STDCALL :: </xsl:text>
-	<xsl:value-of select="@name" />
-	<xsl:text>&#xa;</xsl:text>
+        <xsl:text>      !GCC$ ATTRIBUTES STDCALL :: </xsl:text>
+        <xsl:value-of select="@name" />
+        <xsl:text>&#xa;</xsl:text>
       </xsl:if>
 
       <xsl:for-each select="Argument">
 
-	<xsl:text>      </xsl:text>
-	<xsl:call-template name="type">
-	  <xsl:with-param name="type" select="@type"/>
-	  <xsl:with-param name="var">
-	    <xsl:choose>
-	      <xsl:when test="@name">
-		<xsl:value-of select="@name" />
-	      </xsl:when>
-	      <xsl:otherwise>
-		<xsl:value-of select="concat('var', position())" />
-	      </xsl:otherwise>
-	    </xsl:choose>
-	  </xsl:with-param>
-	</xsl:call-template>
+        <xsl:text>      </xsl:text>
+        <xsl:call-template name="type">
+          <xsl:with-param name="type" select="@type"/>
+          <xsl:with-param name="var">
+            <xsl:choose>
+              <xsl:when test="@name">
+                <xsl:value-of select="@name" />
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:value-of select="concat('var', position())" />
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:with-param>
+        </xsl:call-template>
 
-	<xsl:text>&#xa;</xsl:text>
+        <xsl:text>&#xa;</xsl:text>
 
       </xsl:for-each>
       <xsl:text>    end function </xsl:text>
@@ -154,42 +154,42 @@ module fodbc
     <xsl:variable name="nextp" select="//PointerType[@id=$type]" />
     <xsl:choose>
       <xsl:when test="$next">
-	<xsl:call-template name="type">
+        <xsl:call-template name="type">
           <xsl:with-param name="type" select="$next/@type"/>
           <xsl:with-param name="var" select="$var" />
-	  <xsl:with-param name="ptr" select="$ptr" />
-	</xsl:call-template>
+          <xsl:with-param name="ptr" select="$ptr" />
+      </xsl:call-template>
       </xsl:when>
       <xsl:when test="$fun">
-	<xsl:variable name="t">
-	  <xsl:call-template name="translate">
-	    <xsl:with-param name="type" select="$fun/@name" />
-	  </xsl:call-template>
-	</xsl:variable>
-	<xsl:value-of select="$t" />
-	<xsl:if test="$var">
-	  <xsl:choose>
-	    <xsl:when test="$ptr>1 or ($ptr=1 and $t!=$ptr_type and $t!=$char_type)">
-	      <xsl:text>,intent(out)</xsl:text>
-	    </xsl:when>
-	    <xsl:otherwise>
-	      <xsl:text>,intent(in),value</xsl:text>
-	    </xsl:otherwise>
-	  </xsl:choose>
-	  <xsl:text> :: </xsl:text>
-	  <xsl:value-of select="$var" />
-	</xsl:if>
+        <xsl:variable name="t">
+        <xsl:call-template name="translate">
+          <xsl:with-param name="type" select="$fun/@name" />
+        </xsl:call-template>
+        </xsl:variable>
+        <xsl:value-of select="$t" />
+        <xsl:if test="$var">
+          <xsl:choose>
+            <xsl:when test="$ptr>1 or ($ptr=1 and $t!=$ptr_type and $t!=$char_type)">
+              <xsl:text>,intent(out)</xsl:text>
+            </xsl:when>
+            <xsl:when test="$t!=$char_type">
+              <xsl:text>,intent(in),value</xsl:text>
+            </xsl:when>
+          </xsl:choose>
+          <xsl:text> :: </xsl:text>
+          <xsl:value-of select="$var" />
+        </xsl:if>
       </xsl:when>
       <xsl:when test="$nextp">
-	<xsl:call-template name="type">
-	  <xsl:with-param name="type" select="$nextp/@type" />
-	  <xsl:with-param name="var" select="$var" />
-	  <xsl:with-param name="ptr" select="$ptr + 1"/>
-	</xsl:call-template>
+        <xsl:call-template name="type">
+          <xsl:with-param name="type" select="$nextp/@type" />
+          <xsl:with-param name="var" select="$var" />
+          <xsl:with-param name="ptr" select="$ptr + 1"/>
+        </xsl:call-template>
       </xsl:when>
       <xsl:otherwise>
-	<xsl:message>Can't find definition of <xsl:value-of select="$type"/></xsl:message>
-	<xsl:value-of select="$type" />
+        <xsl:message>Can't find definition of <xsl:value-of select="$type"/></xsl:message>
+        <xsl:value-of select="$type" />
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
@@ -199,7 +199,7 @@ module fodbc
     <xsl:param name="type"/>
     <xsl:choose>
       <xsl:when test="$type='short int' or $type='short unsigned int'">
-	<xsl:text>integer(kind=c_short)</xsl:text>
+        <xsl:text>integer(kind=c_short)</xsl:text>
       </xsl:when>
       <xsl:when test="$type='long int' or $type='long unsigned int'">
 	<xsl:text>integer(kind=c_long)</xsl:text>
@@ -208,14 +208,14 @@ module fodbc
 	<xsl:text>integer(kind=c_int)</xsl:text>
       </xsl:when>
       <xsl:when test="$type='char' or $type='unsigned char'">
-	<xsl:value-of select="$char_type" />
+        <xsl:value-of select="$char_type" />
       </xsl:when>
       <xsl:when test="$type='void'">
-	<xsl:value-of select="$ptr_type" />
+        <xsl:value-of select="$ptr_type" />
       </xsl:when>
       <xsl:otherwise>
-	<xsl:message>I don't know Fortran equivalent of <xsl:value-of select="$type"/></xsl:message>
-	<xsl:value-of select="$type"/>
+        <xsl:message>I don't know Fortran equivalent of <xsl:value-of select="$type"/></xsl:message>
+        <xsl:value-of select="$type"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>

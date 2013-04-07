@@ -64,7 +64,7 @@ module fodbc
       bind(C, name="SQLExecDirectA")
       use, intrinsic :: iso_c_binding
       type(c_ptr),intent(in),value :: hstmt
-      character(kind=c_char),intent(in),value :: szSqlStr
+      character(kind=c_char) :: szSqlStr
       integer(kind=c_long),intent(in),value :: cbSqlStr
     end function SQLExecDirectA0
   end interface SQLExecDirectA
@@ -76,9 +76,9 @@ module fodbc
       bind(C, name="SQLNativeSql")
       use, intrinsic :: iso_c_binding
       type(c_ptr),intent(in),value :: hdbc
-      character(kind=c_char),intent(in),value :: szSqlStrIn
+      character(kind=c_char) :: szSqlStrIn
       integer(kind=c_long),intent(in),value :: cbSqlStrIn
-      character(kind=c_char),intent(in),value :: szSqlStr
+      character(kind=c_char) :: szSqlStr
       integer(kind=c_long),intent(in),value :: cbSqlStrMax
       integer(kind=c_long),intent(out) :: pcbSqlStr
     end function SQLNativeSql0
@@ -103,10 +103,10 @@ module fodbc
       use, intrinsic :: iso_c_binding
       type(c_ptr),intent(in),value :: henv
       integer(kind=c_short),intent(in),value :: fDirection
-      character(kind=c_char),intent(in),value :: szDSN
+      character(kind=c_char) :: szDSN
       integer(kind=c_short),intent(in),value :: cbDSNMax
       integer(kind=c_short),intent(out) :: pcbDSN
-      character(kind=c_char),intent(in),value :: szDescription
+      character(kind=c_char) :: szDescription
       integer(kind=c_short),intent(in),value :: cbDescriptionMax
       integer(kind=c_short),intent(out) :: pcbDescription
     end function SQLDataSourcesA0
@@ -224,13 +224,13 @@ module fodbc
       bind(C, name="SQLColumns")
       use, intrinsic :: iso_c_binding
       type(c_ptr),intent(in),value :: StatementHandle
-      character(kind=c_char),intent(in),value :: CatalogName
+      character(kind=c_char) :: CatalogName
       integer(kind=c_short),intent(in),value :: NameLength1
-      character(kind=c_char),intent(in),value :: SchemaName
+      character(kind=c_char) :: SchemaName
       integer(kind=c_short),intent(in),value :: NameLength2
-      character(kind=c_char),intent(in),value :: TableName
+      character(kind=c_char) :: TableName
       integer(kind=c_short),intent(in),value :: NameLength3
-      character(kind=c_char),intent(in),value :: ColumnName
+      character(kind=c_char) :: ColumnName
       integer(kind=c_short),intent(in),value :: NameLength4
     end function SQLColumns0
   end interface SQLColumns
@@ -256,9 +256,9 @@ module fodbc
       type(c_ptr),intent(in),value :: EnvironmentHandle
       type(c_ptr),intent(in),value :: ConnectionHandle
       type(c_ptr),intent(in),value :: StatementHandle
-      character(kind=c_char),intent(in),value :: Sqlstate
+      character(kind=c_char) :: Sqlstate
       integer(kind=c_long),intent(out) :: NativeError
-      character(kind=c_char),intent(in),value :: MessageText
+      character(kind=c_char) :: MessageText
       integer(kind=c_short),intent(in),value :: BufferLength
       integer(kind=c_short),intent(out) :: TextLength
     end function SQLError0
@@ -305,13 +305,13 @@ module fodbc
       bind(C, name="SQLProcedureColumnsA")
       use, intrinsic :: iso_c_binding
       type(c_ptr),intent(in),value :: hstmt
-      character(kind=c_char),intent(in),value :: szCatalogName
+      character(kind=c_char) :: szCatalogName
       integer(kind=c_short),intent(in),value :: cbCatalogName
-      character(kind=c_char),intent(in),value :: szSchemaName
+      character(kind=c_char) :: szSchemaName
       integer(kind=c_short),intent(in),value :: cbSchemaName
-      character(kind=c_char),intent(in),value :: szProcName
+      character(kind=c_char) :: szProcName
       integer(kind=c_short),intent(in),value :: cbProcName
-      character(kind=c_char),intent(in),value :: szColumnName
+      character(kind=c_char) :: szColumnName
       integer(kind=c_short),intent(in),value :: cbColumnName
     end function SQLProcedureColumnsA0
   end interface SQLProcedureColumnsA
@@ -322,7 +322,7 @@ module fodbc
       bind(C, name="SQLGetCursorName")
       use, intrinsic :: iso_c_binding
       type(c_ptr),intent(in),value :: StatementHandle
-      character(kind=c_char),intent(in),value :: CursorName
+      character(kind=c_char) :: CursorName
       integer(kind=c_short),intent(in),value :: BufferLength
       integer(kind=c_short),intent(out) :: NameLength
     end function SQLGetCursorName0
@@ -334,7 +334,7 @@ module fodbc
       bind(C, name="SQLPrepare")
       use, intrinsic :: iso_c_binding
       type(c_ptr),intent(in),value :: StatementHandle
-      character(kind=c_char),intent(in),value :: StatementText
+      character(kind=c_char) :: StatementText
       integer(kind=c_long),intent(in),value :: TextLength
     end function SQLPrepare0
   end interface SQLPrepare
@@ -346,11 +346,11 @@ module fodbc
       bind(C, name="SQLTablePrivilegesA")
       use, intrinsic :: iso_c_binding
       type(c_ptr),intent(in),value :: hstmt
-      character(kind=c_char),intent(in),value :: szCatalogName
+      character(kind=c_char) :: szCatalogName
       integer(kind=c_short),intent(in),value :: cbCatalogName
-      character(kind=c_char),intent(in),value :: szSchemaName
+      character(kind=c_char) :: szSchemaName
       integer(kind=c_short),intent(in),value :: cbSchemaName
-      character(kind=c_char),intent(in),value :: szTableName
+      character(kind=c_char) :: szTableName
       integer(kind=c_short),intent(in),value :: cbTableName
     end function SQLTablePrivilegesA0
   end interface SQLTablePrivilegesA
@@ -413,11 +413,11 @@ module fodbc
       bind(C, name="SQLConnect")
       use, intrinsic :: iso_c_binding
       type(c_ptr),intent(in),value :: ConnectionHandle
-      character(kind=c_char),intent(in),value :: ServerName
+      character(kind=c_char) :: ServerName
       integer(kind=c_short),intent(in),value :: NameLength1
-      character(kind=c_char),intent(in),value :: UserName
+      character(kind=c_char) :: UserName
       integer(kind=c_short),intent(in),value :: NameLength2
-      character(kind=c_char),intent(in),value :: Authentication
+      character(kind=c_char) :: Authentication
       integer(kind=c_short),intent(in),value :: NameLength3
     end function SQLConnect0
   end interface SQLConnect
@@ -473,7 +473,7 @@ module fodbc
       bind(C, name="SQLPrepareA")
       use, intrinsic :: iso_c_binding
       type(c_ptr),intent(in),value :: hstmt
-      character(kind=c_char),intent(in),value :: szSqlStr
+      character(kind=c_char) :: szSqlStr
       integer(kind=c_long),intent(in),value :: cbSqlStr
     end function SQLPrepareA0
   end interface SQLPrepareA
@@ -541,9 +541,9 @@ module fodbc
       bind(C, name="SQLBrowseConnect")
       use, intrinsic :: iso_c_binding
       type(c_ptr),intent(in),value :: hdbc
-      character(kind=c_char),intent(in),value :: szConnStrIn
+      character(kind=c_char) :: szConnStrIn
       integer(kind=c_short),intent(in),value :: cbConnStrIn
-      character(kind=c_char),intent(in),value :: szConnStrOut
+      character(kind=c_char) :: szConnStrOut
       integer(kind=c_short),intent(in),value :: cbConnStrOutMax
       integer(kind=c_short),intent(out) :: pcbConnStrOut
     end function SQLBrowseConnect0
@@ -564,8 +564,8 @@ module fodbc
       bind(C, name="TraceOpenLogFile")
       use, intrinsic :: iso_c_binding
       type(c_ptr),intent(in),value :: var1
-      character(kind=c_char),intent(in),value :: var2
-      character(kind=c_char),intent(in),value :: var3
+      character(kind=c_char) :: var2
+      character(kind=c_char) :: var3
       integer(kind=c_long),intent(in),value :: var4
     end function TraceOpenLogFile0
   end interface TraceOpenLogFile
@@ -591,10 +591,10 @@ module fodbc
       use, intrinsic :: iso_c_binding
       type(c_ptr),intent(in),value :: henv
       integer(kind=c_short),intent(in),value :: fDirection
-      character(kind=c_char),intent(in),value :: szDriverDesc
+      character(kind=c_char) :: szDriverDesc
       integer(kind=c_short),intent(in),value :: cbDriverDescMax
       integer(kind=c_short),intent(out) :: pcbDriverDesc
-      character(kind=c_char),intent(in),value :: szDriverAttributes
+      character(kind=c_char) :: szDriverAttributes
       integer(kind=c_short),intent(in),value :: cbDrvrAttrMax
       integer(kind=c_short),intent(out) :: pcbDrvrAttr
     end function SQLDrivers0
@@ -608,11 +608,11 @@ module fodbc
       use, intrinsic :: iso_c_binding
       type(c_ptr),intent(in),value :: StatementHandle
       integer(kind=c_short),intent(in),value :: IdentifierType
-      character(kind=c_char),intent(in),value :: CatalogName
+      character(kind=c_char) :: CatalogName
       integer(kind=c_short),intent(in),value :: NameLength1
-      character(kind=c_char),intent(in),value :: SchemaName
+      character(kind=c_char) :: SchemaName
       integer(kind=c_short),intent(in),value :: NameLength2
-      character(kind=c_char),intent(in),value :: TableName
+      character(kind=c_char) :: TableName
       integer(kind=c_short),intent(in),value :: NameLength3
       integer(kind=c_short),intent(in),value :: Scope
       integer(kind=c_short),intent(in),value :: Nullable
@@ -637,7 +637,7 @@ module fodbc
       use, intrinsic :: iso_c_binding
       type(c_ptr),intent(in),value :: StatementHandle
       integer(kind=c_short),intent(in),value :: ColumnNumber
-      character(kind=c_char),intent(in),value :: ColumnName
+      character(kind=c_char) :: ColumnName
       integer(kind=c_short),intent(in),value :: BufferLength
       integer(kind=c_short),intent(out) :: NameLength
       integer(kind=c_short),intent(out) :: DataType
@@ -674,17 +674,17 @@ module fodbc
       bind(C, name="SQLForeignKeysA")
       use, intrinsic :: iso_c_binding
       type(c_ptr),intent(in),value :: hstmt
-      character(kind=c_char),intent(in),value :: szPkCatalogName
+      character(kind=c_char) :: szPkCatalogName
       integer(kind=c_short),intent(in),value :: cbPkCatalogName
-      character(kind=c_char),intent(in),value :: szPkSchemaName
+      character(kind=c_char) :: szPkSchemaName
       integer(kind=c_short),intent(in),value :: cbPkSchemaName
-      character(kind=c_char),intent(in),value :: szPkTableName
+      character(kind=c_char) :: szPkTableName
       integer(kind=c_short),intent(in),value :: cbPkTableName
-      character(kind=c_char),intent(in),value :: szFkCatalogName
+      character(kind=c_char) :: szFkCatalogName
       integer(kind=c_short),intent(in),value :: cbFkCatalogName
-      character(kind=c_char),intent(in),value :: szFkSchemaName
+      character(kind=c_char) :: szFkSchemaName
       integer(kind=c_short),intent(in),value :: cbFkSchemaName
-      character(kind=c_char),intent(in),value :: szFkTableName
+      character(kind=c_char) :: szFkTableName
       integer(kind=c_short),intent(in),value :: cbFkTableName
     end function SQLForeignKeysA0
   end interface SQLForeignKeysA
@@ -698,9 +698,9 @@ module fodbc
       integer(kind=c_short),intent(in),value :: HandleType
       type(c_ptr),intent(in),value :: Handle
       integer(kind=c_short),intent(in),value :: RecNumber
-      character(kind=c_char),intent(in),value :: Sqlstate
+      character(kind=c_char) :: Sqlstate
       integer(kind=c_long),intent(out) :: NativeError
-      character(kind=c_char),intent(in),value :: MessageText
+      character(kind=c_char) :: MessageText
       integer(kind=c_short),intent(in),value :: BufferLength
       integer(kind=c_short),intent(out) :: TextLength
     end function SQLGetDiagRec0
@@ -721,7 +721,7 @@ module fodbc
       bind(C, name="SQLGetCursorNameA")
       use, intrinsic :: iso_c_binding
       type(c_ptr),intent(in),value :: hstmt
-      character(kind=c_char),intent(in),value :: szCursor
+      character(kind=c_char) :: szCursor
       integer(kind=c_short),intent(in),value :: cbCursorMax
       integer(kind=c_short),intent(out) :: pcbCursor
     end function SQLGetCursorNameA0
@@ -734,11 +734,11 @@ module fodbc
       bind(C, name="SQLTablePrivileges")
       use, intrinsic :: iso_c_binding
       type(c_ptr),intent(in),value :: hstmt
-      character(kind=c_char),intent(in),value :: szCatalogName
+      character(kind=c_char) :: szCatalogName
       integer(kind=c_short),intent(in),value :: cbCatalogName
-      character(kind=c_char),intent(in),value :: szSchemaName
+      character(kind=c_char) :: szSchemaName
       integer(kind=c_short),intent(in),value :: cbSchemaName
-      character(kind=c_char),intent(in),value :: szTableName
+      character(kind=c_char) :: szTableName
       integer(kind=c_short),intent(in),value :: cbTableName
     end function SQLTablePrivileges0
   end interface SQLTablePrivileges
@@ -751,10 +751,10 @@ module fodbc
       use, intrinsic :: iso_c_binding
       type(c_ptr),intent(in),value :: EnvironmentHandle
       integer(kind=c_short),intent(in),value :: Direction
-      character(kind=c_char),intent(in),value :: ServerName
+      character(kind=c_char) :: ServerName
       integer(kind=c_short),intent(in),value :: BufferLength1
       integer(kind=c_short),intent(out) :: NameLength1
-      character(kind=c_char),intent(in),value :: Description
+      character(kind=c_char) :: Description
       integer(kind=c_short),intent(in),value :: BufferLength2
       integer(kind=c_short),intent(out) :: NameLength2
     end function SQLDataSources0
@@ -785,7 +785,7 @@ module fodbc
       use, intrinsic :: iso_c_binding
       type(c_ptr),intent(in),value :: DescriptorHandle
       integer(kind=c_short),intent(in),value :: RecNumber
-      character(kind=c_char),intent(in),value :: Name
+      character(kind=c_char) :: Name
       integer(kind=c_short),intent(in),value :: BufferLength
       integer(kind=c_short),intent(out) :: StringLength
       integer(kind=c_short),intent(out) :: Type
@@ -805,7 +805,7 @@ module fodbc
       use, intrinsic :: iso_c_binding
       type(c_ptr),intent(in),value :: hstmt
       integer(kind=c_short),intent(in),value :: icol
-      character(kind=c_char),intent(in),value :: szColName
+      character(kind=c_char) :: szColName
       integer(kind=c_short),intent(in),value :: cbColNameMax
       integer(kind=c_short),intent(out) :: pcbColName
       integer(kind=c_short),intent(out) :: pfSqlType
@@ -851,13 +851,13 @@ module fodbc
       bind(C, name="SQLTablesA")
       use, intrinsic :: iso_c_binding
       type(c_ptr),intent(in),value :: hstmt
-      character(kind=c_char),intent(in),value :: szCatalogName
+      character(kind=c_char) :: szCatalogName
       integer(kind=c_short),intent(in),value :: cbCatalogName
-      character(kind=c_char),intent(in),value :: szSchemaName
+      character(kind=c_char) :: szSchemaName
       integer(kind=c_short),intent(in),value :: cbSchemaName
-      character(kind=c_char),intent(in),value :: szTableName
+      character(kind=c_char) :: szTableName
       integer(kind=c_short),intent(in),value :: cbTableName
-      character(kind=c_char),intent(in),value :: szTableType
+      character(kind=c_char) :: szTableType
       integer(kind=c_short),intent(in),value :: cbTableType
     end function SQLTablesA0
   end interface SQLTablesA
@@ -993,9 +993,9 @@ module fodbc
       use, intrinsic :: iso_c_binding
       type(c_ptr),intent(in),value :: hdbc
       type(c_ptr),intent(in),value :: hwnd
-      character(kind=c_char),intent(in),value :: szConnStrIn
+      character(kind=c_char) :: szConnStrIn
       integer(kind=c_short),intent(in),value :: cbConnStrIn
-      character(kind=c_char),intent(in),value :: szConnStrOut
+      character(kind=c_char) :: szConnStrOut
       integer(kind=c_short),intent(in),value :: cbConnStrOutMax
       integer(kind=c_short),intent(out) :: pcbConnStrOut
       integer(kind=c_short),intent(in),value :: fDriverCompletion
@@ -1045,9 +1045,9 @@ module fodbc
       bind(C, name="SQLBrowseConnectA")
       use, intrinsic :: iso_c_binding
       type(c_ptr),intent(in),value :: hdbc
-      character(kind=c_char),intent(in),value :: szConnStrIn
+      character(kind=c_char) :: szConnStrIn
       integer(kind=c_short),intent(in),value :: cbConnStrIn
-      character(kind=c_char),intent(in),value :: szConnStrOut
+      character(kind=c_char) :: szConnStrOut
       integer(kind=c_short),intent(in),value :: cbConnStrOutMax
       integer(kind=c_short),intent(out) :: pcbConnStrOut
     end function SQLBrowseConnectA0
@@ -1104,11 +1104,11 @@ module fodbc
       bind(C, name="SQLConnectA")
       use, intrinsic :: iso_c_binding
       type(c_ptr),intent(in),value :: hdbc
-      character(kind=c_char),intent(in),value :: szDSN
+      character(kind=c_char) :: szDSN
       integer(kind=c_short),intent(in),value :: cbDSN
-      character(kind=c_char),intent(in),value :: szUID
+      character(kind=c_char) :: szUID
       integer(kind=c_short),intent(in),value :: cbUID
-      character(kind=c_char),intent(in),value :: szAuthStr
+      character(kind=c_char) :: szAuthStr
       integer(kind=c_short),intent(in),value :: cbAuthStr
     end function SQLConnectA0
   end interface SQLConnectA
@@ -1164,11 +1164,11 @@ module fodbc
       use, intrinsic :: iso_c_binding
       type(c_ptr),intent(in),value :: hstmt
       integer(kind=c_short),intent(in),value :: fColType
-      character(kind=c_char),intent(in),value :: szCatalogName
+      character(kind=c_char) :: szCatalogName
       integer(kind=c_short),intent(in),value :: cbCatalogName
-      character(kind=c_char),intent(in),value :: szSchemaName
+      character(kind=c_char) :: szSchemaName
       integer(kind=c_short),intent(in),value :: cbSchemaName
-      character(kind=c_char),intent(in),value :: szTableName
+      character(kind=c_char) :: szTableName
       integer(kind=c_short),intent(in),value :: cbTableName
       integer(kind=c_short),intent(in),value :: fScope
       integer(kind=c_short),intent(in),value :: fNullable
@@ -1275,11 +1275,11 @@ module fodbc
       bind(C, name="SQLStatistics")
       use, intrinsic :: iso_c_binding
       type(c_ptr),intent(in),value :: StatementHandle
-      character(kind=c_char),intent(in),value :: CatalogName
+      character(kind=c_char) :: CatalogName
       integer(kind=c_short),intent(in),value :: NameLength1
-      character(kind=c_char),intent(in),value :: SchemaName
+      character(kind=c_char) :: SchemaName
       integer(kind=c_short),intent(in),value :: NameLength2
-      character(kind=c_char),intent(in),value :: TableName
+      character(kind=c_char) :: TableName
       integer(kind=c_short),intent(in),value :: NameLength3
       integer(kind=c_short),intent(in),value :: Unique
       integer(kind=c_short),intent(in),value :: Reserved
@@ -1307,7 +1307,7 @@ module fodbc
       bind(C, name="SQLSetCursorName")
       use, intrinsic :: iso_c_binding
       type(c_ptr),intent(in),value :: StatementHandle
-      character(kind=c_char),intent(in),value :: CursorName
+      character(kind=c_char) :: CursorName
       integer(kind=c_short),intent(in),value :: NameLength
     end function SQLSetCursorName0
   end interface SQLSetCursorName
@@ -1319,11 +1319,11 @@ module fodbc
       bind(C, name="SQLPrimaryKeysA")
       use, intrinsic :: iso_c_binding
       type(c_ptr),intent(in),value :: hstmt
-      character(kind=c_char),intent(in),value :: szCatalogName
+      character(kind=c_char) :: szCatalogName
       integer(kind=c_short),intent(in),value :: cbCatalogName
-      character(kind=c_char),intent(in),value :: szSchemaName
+      character(kind=c_char) :: szSchemaName
       integer(kind=c_short),intent(in),value :: cbSchemaName
-      character(kind=c_char),intent(in),value :: szTableName
+      character(kind=c_char) :: szTableName
       integer(kind=c_short),intent(in),value :: cbTableName
     end function SQLPrimaryKeysA0
   end interface SQLPrimaryKeysA
@@ -1364,9 +1364,9 @@ module fodbc
       use, intrinsic :: iso_c_binding
       type(c_ptr),intent(in),value :: hdbc
       type(c_ptr),intent(in),value :: hwnd
-      character(kind=c_char),intent(in),value :: szConnStrIn
+      character(kind=c_char) :: szConnStrIn
       integer(kind=c_short),intent(in),value :: cbConnStrIn
-      character(kind=c_char),intent(in),value :: szConnStrOut
+      character(kind=c_char) :: szConnStrOut
       integer(kind=c_short),intent(in),value :: cbConnStrOutMax
       integer(kind=c_short),intent(out) :: pcbConnStrOut
       integer(kind=c_short),intent(in),value :: fDriverCompletion
@@ -1417,9 +1417,9 @@ module fodbc
       bind(C, name="SQLNativeSqlA")
       use, intrinsic :: iso_c_binding
       type(c_ptr),intent(in),value :: hdbc
-      character(kind=c_char),intent(in),value :: szSqlStrIn
+      character(kind=c_char) :: szSqlStrIn
       integer(kind=c_long),intent(in),value :: cbSqlStrIn
-      character(kind=c_char),intent(in),value :: szSqlStr
+      character(kind=c_char) :: szSqlStr
       integer(kind=c_long),intent(in),value :: cbSqlStrMax
       integer(kind=c_long),intent(out) :: pcbSqlStr
     end function SQLNativeSqlA0
@@ -1467,11 +1467,11 @@ module fodbc
       bind(C, name="SQLProcedures")
       use, intrinsic :: iso_c_binding
       type(c_ptr),intent(in),value :: hstmt
-      character(kind=c_char),intent(in),value :: szCatalogName
+      character(kind=c_char) :: szCatalogName
       integer(kind=c_short),intent(in),value :: cbCatalogName
-      character(kind=c_char),intent(in),value :: szSchemaName
+      character(kind=c_char) :: szSchemaName
       integer(kind=c_short),intent(in),value :: cbSchemaName
-      character(kind=c_char),intent(in),value :: szProcName
+      character(kind=c_char) :: szProcName
       integer(kind=c_short),intent(in),value :: cbProcName
     end function SQLProcedures0
   end interface SQLProcedures
@@ -1494,13 +1494,13 @@ module fodbc
       bind(C, name="SQLColumnsA")
       use, intrinsic :: iso_c_binding
       type(c_ptr),intent(in),value :: hstmt
-      character(kind=c_char),intent(in),value :: szCatalogName
+      character(kind=c_char) :: szCatalogName
       integer(kind=c_short),intent(in),value :: cbCatalogName
-      character(kind=c_char),intent(in),value :: szSchemaName
+      character(kind=c_char) :: szSchemaName
       integer(kind=c_short),intent(in),value :: cbSchemaName
-      character(kind=c_char),intent(in),value :: szTableName
+      character(kind=c_char) :: szTableName
       integer(kind=c_short),intent(in),value :: cbTableName
-      character(kind=c_char),intent(in),value :: szColumnName
+      character(kind=c_char) :: szColumnName
       integer(kind=c_short),intent(in),value :: cbColumnName
     end function SQLColumnsA0
   end interface SQLColumnsA
@@ -1585,7 +1585,7 @@ module fodbc
       bind(C, name="SQLExecDirect")
       use, intrinsic :: iso_c_binding
       type(c_ptr),intent(in),value :: StatementHandle
-      character(kind=c_char),intent(in),value :: StatementText
+      character(kind=c_char) :: StatementText
       integer(kind=c_long),intent(in),value :: TextLength
     end function SQLExecDirect0
   end interface SQLExecDirect
@@ -1609,13 +1609,13 @@ module fodbc
       bind(C, name="SQLColumnPrivileges")
       use, intrinsic :: iso_c_binding
       type(c_ptr),intent(in),value :: hstmt
-      character(kind=c_char),intent(in),value :: szCatalogName
+      character(kind=c_char) :: szCatalogName
       integer(kind=c_short),intent(in),value :: cbCatalogName
-      character(kind=c_char),intent(in),value :: szSchemaName
+      character(kind=c_char) :: szSchemaName
       integer(kind=c_short),intent(in),value :: cbSchemaName
-      character(kind=c_char),intent(in),value :: szTableName
+      character(kind=c_char) :: szTableName
       integer(kind=c_short),intent(in),value :: cbTableName
-      character(kind=c_char),intent(in),value :: szColumnName
+      character(kind=c_char) :: szColumnName
       integer(kind=c_short),intent(in),value :: cbColumnName
     end function SQLColumnPrivileges0
   end interface SQLColumnPrivileges
@@ -1627,13 +1627,13 @@ module fodbc
       bind(C, name="SQLColumnPrivilegesA")
       use, intrinsic :: iso_c_binding
       type(c_ptr),intent(in),value :: hstmt
-      character(kind=c_char),intent(in),value :: szCatalogName
+      character(kind=c_char) :: szCatalogName
       integer(kind=c_short),intent(in),value :: cbCatalogName
-      character(kind=c_char),intent(in),value :: szSchemaName
+      character(kind=c_char) :: szSchemaName
       integer(kind=c_short),intent(in),value :: cbSchemaName
-      character(kind=c_char),intent(in),value :: szTableName
+      character(kind=c_char) :: szTableName
       integer(kind=c_short),intent(in),value :: cbTableName
-      character(kind=c_char),intent(in),value :: szColumnName
+      character(kind=c_char) :: szColumnName
       integer(kind=c_short),intent(in),value :: cbColumnName
     end function SQLColumnPrivilegesA0
   end interface SQLColumnPrivilegesA
@@ -1686,9 +1686,9 @@ module fodbc
       integer(kind=c_short),intent(in),value :: fHandleType
       type(c_ptr),intent(in),value :: handle
       integer(kind=c_short),intent(in),value :: iRecord
-      character(kind=c_char),intent(in),value :: szSqlState
+      character(kind=c_char) :: szSqlState
       integer(kind=c_long),intent(out) :: pfNativeError
-      character(kind=c_char),intent(in),value :: szErrorMsg
+      character(kind=c_char) :: szErrorMsg
       integer(kind=c_short),intent(in),value :: cbErrorMsgMax
       integer(kind=c_short),intent(out) :: pcbErrorMsg
     end function SQLGetDiagRecA0
@@ -1718,11 +1718,11 @@ module fodbc
       bind(C, name="SQLPrimaryKeys")
       use, intrinsic :: iso_c_binding
       type(c_ptr),intent(in),value :: hstmt
-      character(kind=c_char),intent(in),value :: szCatalogName
+      character(kind=c_char) :: szCatalogName
       integer(kind=c_short),intent(in),value :: cbCatalogName
-      character(kind=c_char),intent(in),value :: szSchemaName
+      character(kind=c_char) :: szSchemaName
       integer(kind=c_short),intent(in),value :: cbSchemaName
-      character(kind=c_char),intent(in),value :: szTableName
+      character(kind=c_char) :: szTableName
       integer(kind=c_short),intent(in),value :: cbTableName
     end function SQLPrimaryKeys0
   end interface SQLPrimaryKeys
@@ -1746,17 +1746,17 @@ module fodbc
       bind(C, name="SQLForeignKeys")
       use, intrinsic :: iso_c_binding
       type(c_ptr),intent(in),value :: hstmt
-      character(kind=c_char),intent(in),value :: szPkCatalogName
+      character(kind=c_char) :: szPkCatalogName
       integer(kind=c_short),intent(in),value :: cbPkCatalogName
-      character(kind=c_char),intent(in),value :: szPkSchemaName
+      character(kind=c_char) :: szPkSchemaName
       integer(kind=c_short),intent(in),value :: cbPkSchemaName
-      character(kind=c_char),intent(in),value :: szPkTableName
+      character(kind=c_char) :: szPkTableName
       integer(kind=c_short),intent(in),value :: cbPkTableName
-      character(kind=c_char),intent(in),value :: szFkCatalogName
+      character(kind=c_char) :: szFkCatalogName
       integer(kind=c_short),intent(in),value :: cbFkCatalogName
-      character(kind=c_char),intent(in),value :: szFkSchemaName
+      character(kind=c_char) :: szFkSchemaName
       integer(kind=c_short),intent(in),value :: cbFkSchemaName
-      character(kind=c_char),intent(in),value :: szFkTableName
+      character(kind=c_char) :: szFkTableName
       integer(kind=c_short),intent(in),value :: cbFkTableName
     end function SQLForeignKeys0
   end interface SQLForeignKeys
@@ -1781,10 +1781,10 @@ module fodbc
       use, intrinsic :: iso_c_binding
       type(c_ptr),intent(in),value :: henv
       integer(kind=c_short),intent(in),value :: fDirection
-      character(kind=c_char),intent(in),value :: szDriverDesc
+      character(kind=c_char) :: szDriverDesc
       integer(kind=c_short),intent(in),value :: cbDriverDescMax
       integer(kind=c_short),intent(out) :: pcbDriverDesc
-      character(kind=c_char),intent(in),value :: szDriverAttributes
+      character(kind=c_char) :: szDriverAttributes
       integer(kind=c_short),intent(in),value :: cbDrvrAttrMax
       integer(kind=c_short),intent(out) :: pcbDrvrAttr
     end function SQLDriversA0
@@ -1830,13 +1830,13 @@ module fodbc
       bind(C, name="SQLProcedureColumns")
       use, intrinsic :: iso_c_binding
       type(c_ptr),intent(in),value :: hstmt
-      character(kind=c_char),intent(in),value :: szCatalogName
+      character(kind=c_char) :: szCatalogName
       integer(kind=c_short),intent(in),value :: cbCatalogName
-      character(kind=c_char),intent(in),value :: szSchemaName
+      character(kind=c_char) :: szSchemaName
       integer(kind=c_short),intent(in),value :: cbSchemaName
-      character(kind=c_char),intent(in),value :: szProcName
+      character(kind=c_char) :: szProcName
       integer(kind=c_short),intent(in),value :: cbProcName
-      character(kind=c_char),intent(in),value :: szColumnName
+      character(kind=c_char) :: szColumnName
       integer(kind=c_short),intent(in),value :: cbColumnName
     end function SQLProcedureColumns0
   end interface SQLProcedureColumns
@@ -1868,11 +1868,11 @@ module fodbc
       bind(C, name="SQLProceduresA")
       use, intrinsic :: iso_c_binding
       type(c_ptr),intent(in),value :: hstmt
-      character(kind=c_char),intent(in),value :: szCatalogName
+      character(kind=c_char) :: szCatalogName
       integer(kind=c_short),intent(in),value :: cbCatalogName
-      character(kind=c_char),intent(in),value :: szSchemaName
+      character(kind=c_char) :: szSchemaName
       integer(kind=c_short),intent(in),value :: cbSchemaName
-      character(kind=c_char),intent(in),value :: szProcName
+      character(kind=c_char) :: szProcName
       integer(kind=c_short),intent(in),value :: cbProcName
     end function SQLProceduresA0
   end interface SQLProceduresA
@@ -1886,7 +1886,7 @@ module fodbc
       use, intrinsic :: iso_c_binding
       type(c_ptr),intent(in),value :: hdesc
       integer(kind=c_short),intent(in),value :: iRecord
-      character(kind=c_char),intent(in),value :: szName
+      character(kind=c_char) :: szName
       integer(kind=c_short),intent(in),value :: cbNameMax
       integer(kind=c_short),intent(out) :: pcbName
       integer(kind=c_short),intent(out) :: pfType
@@ -1934,7 +1934,7 @@ module fodbc
       bind(C, name="SQLSetCursorNameA")
       use, intrinsic :: iso_c_binding
       type(c_ptr),intent(in),value :: hstmt
-      character(kind=c_char),intent(in),value :: szCursor
+      character(kind=c_char) :: szCursor
       integer(kind=c_short),intent(in),value :: cbCursor
     end function SQLSetCursorNameA0
   end interface SQLSetCursorNameA
@@ -1959,9 +1959,9 @@ module fodbc
       type(c_ptr),intent(in),value :: henv
       type(c_ptr),intent(in),value :: hdbc
       type(c_ptr),intent(in),value :: hstmt
-      character(kind=c_char),intent(in),value :: szSqlState
+      character(kind=c_char) :: szSqlState
       integer(kind=c_long),intent(out) :: pfNativeError
-      character(kind=c_char),intent(in),value :: szErrorMsg
+      character(kind=c_char) :: szErrorMsg
       integer(kind=c_short),intent(in),value :: cbErrorMsgMax
       integer(kind=c_short),intent(out) :: pcbErrorMsg
     end function SQLErrorA0
@@ -2126,11 +2126,11 @@ module fodbc
       bind(C, name="SQLStatisticsA")
       use, intrinsic :: iso_c_binding
       type(c_ptr),intent(in),value :: hstmt
-      character(kind=c_char),intent(in),value :: szCatalogName
+      character(kind=c_char) :: szCatalogName
       integer(kind=c_short),intent(in),value :: cbCatalogName
-      character(kind=c_char),intent(in),value :: szSchemaName
+      character(kind=c_char) :: szSchemaName
       integer(kind=c_short),intent(in),value :: cbSchemaName
-      character(kind=c_char),intent(in),value :: szTableName
+      character(kind=c_char) :: szTableName
       integer(kind=c_short),intent(in),value :: cbTableName
       integer(kind=c_short),intent(in),value :: fUnique
       integer(kind=c_short),intent(in),value :: fAccuracy
@@ -2238,13 +2238,13 @@ module fodbc
       bind(C, name="SQLTables")
       use, intrinsic :: iso_c_binding
       type(c_ptr),intent(in),value :: StatementHandle
-      character(kind=c_char),intent(in),value :: CatalogName
+      character(kind=c_char) :: CatalogName
       integer(kind=c_short),intent(in),value :: NameLength1
-      character(kind=c_char),intent(in),value :: SchemaName
+      character(kind=c_char) :: SchemaName
       integer(kind=c_short),intent(in),value :: NameLength2
-      character(kind=c_char),intent(in),value :: TableName
+      character(kind=c_char) :: TableName
       integer(kind=c_short),intent(in),value :: NameLength3
-      character(kind=c_char),intent(in),value :: TableType
+      character(kind=c_char) :: TableType
       integer(kind=c_short),intent(in),value :: NameLength4
     end function SQLTables0
   end interface SQLTables
