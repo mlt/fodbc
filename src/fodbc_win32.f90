@@ -27,7 +27,7 @@ module fodbc
       (hstmt,crow,pirow) &
       bind(C, name="SQLParamOptions")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLParamOptions
+      !GCC$ ATTRIBUTES STDCALL :: SQLParamOptions0
       type(c_ptr),intent(in),value :: hstmt
       integer(kind=c_long),intent(in),value :: crow
       integer(kind=c_long),intent(out) :: pirow
@@ -39,7 +39,7 @@ module fodbc
       (ConnectionHandle,InfoType,InfoValue,BufferLength,StringLength) &
       bind(C, name="SQLGetInfo")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLGetInfo
+      !GCC$ ATTRIBUTES STDCALL :: SQLGetInfo0
       type(c_ptr),intent(in),value :: ConnectionHandle
       integer(kind=c_short),intent(in),value :: InfoType
       type(c_ptr),intent(in),value :: InfoValue
@@ -53,7 +53,7 @@ module fodbc
       (hstmt,fAttribute,rgbValue,cbValueMax) &
       bind(C, name="SQLSetStmtAttrW")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLSetStmtAttrW
+      !GCC$ ATTRIBUTES STDCALL :: SQLSetStmtAttrW0
       type(c_ptr),intent(in),value :: hstmt
       integer(kind=c_long),intent(in),value :: fAttribute
       type(c_ptr),intent(in),value :: rgbValue
@@ -66,7 +66,7 @@ module fodbc
       (hstmt,szSqlStr,cbSqlStr) &
       bind(C, name="SQLExecDirectA")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLExecDirectA
+      !GCC$ ATTRIBUTES STDCALL :: SQLExecDirectA0
       type(c_ptr),intent(in),value :: hstmt
       character(kind=c_char) :: szSqlStr
       integer(kind=c_long),intent(in),value :: cbSqlStr
@@ -79,7 +79,7 @@ module fodbc
       pcbSqlStr) &
       bind(C, name="SQLNativeSql")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLNativeSql
+      !GCC$ ATTRIBUTES STDCALL :: SQLNativeSql0
       type(c_ptr),intent(in),value :: hdbc
       character(kind=c_char) :: szSqlStrIn
       integer(kind=c_long),intent(in),value :: cbSqlStrIn
@@ -94,7 +94,7 @@ module fodbc
       (hdbc,fOption,pvParam) &
       bind(C, name="SQLGetConnectOptionW")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLGetConnectOptionW
+      !GCC$ ATTRIBUTES STDCALL :: SQLGetConnectOptionW0
       type(c_ptr),intent(in),value :: hdbc
       integer(kind=c_short),intent(in),value :: fOption
       type(c_ptr),intent(in),value :: pvParam
@@ -107,7 +107,7 @@ module fodbc
       szDescription,cbDescriptionMax,pcbDescription) &
       bind(C, name="SQLDataSourcesA")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLDataSourcesA
+      !GCC$ ATTRIBUTES STDCALL :: SQLDataSourcesA0
       type(c_ptr),intent(in),value :: henv
       integer(kind=c_short),intent(in),value :: fDirection
       character(kind=c_char) :: szDSN
@@ -124,7 +124,7 @@ module fodbc
       () &
       bind(C, name="ODBCGetTryWaitValue")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: ODBCGetTryWaitValue
+      !GCC$ ATTRIBUTES STDCALL :: ODBCGetTryWaitValue0
     end function ODBCGetTryWaitValue0
   end interface ODBCGetTryWaitValue
 
@@ -134,7 +134,7 @@ module fodbc
       szDescription,cbDescriptionMax,pcbDescription) &
       bind(C, name="SQLDataSourcesW")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLDataSourcesW
+      !GCC$ ATTRIBUTES STDCALL :: SQLDataSourcesW0
       type(c_ptr),intent(in),value :: henv
       integer(kind=c_short),intent(in),value :: fDirection
       integer(kind=c_short),intent(out) :: szDSN
@@ -151,7 +151,7 @@ module fodbc
       (StatementHandle) &
       bind(C, name="SQLCloseCursor")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLCloseCursor
+      !GCC$ ATTRIBUTES STDCALL :: SQLCloseCursor0
       type(c_ptr),intent(in),value :: StatementHandle
     end function SQLCloseCursor0
   end interface SQLCloseCursor
@@ -161,7 +161,7 @@ module fodbc
       (EnvironmentHandle,Attribute,Value,StringLength) &
       bind(C, name="SQLSetEnvAttr")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLSetEnvAttr
+      !GCC$ ATTRIBUTES STDCALL :: SQLSetEnvAttr0
       type(c_ptr),intent(in),value :: EnvironmentHandle
       integer(kind=c_long),intent(in),value :: Attribute
       type(c_ptr),intent(in),value :: Value
@@ -174,7 +174,7 @@ module fodbc
       (StatementHandle,FetchOrientation,FetchOffset) &
       bind(C, name="SQLFetchScroll")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLFetchScroll
+      !GCC$ ATTRIBUTES STDCALL :: SQLFetchScroll0
       type(c_ptr),intent(in),value :: StatementHandle
       integer(kind=c_short),intent(in),value :: FetchOrientation
       integer(kind=c_long),intent(in),value :: FetchOffset
@@ -186,7 +186,7 @@ module fodbc
       (EnvironmentHandle) &
       bind(C, name="SQLFreeEnv")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLFreeEnv
+      !GCC$ ATTRIBUTES STDCALL :: SQLFreeEnv0
       type(c_ptr),intent(in),value :: EnvironmentHandle
     end function SQLFreeEnv0
   end interface SQLFreeEnv
@@ -196,7 +196,7 @@ module fodbc
       (ConnectionHandle,FunctionId,Supported) &
       bind(C, name="SQLGetFunctions")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLGetFunctions
+      !GCC$ ATTRIBUTES STDCALL :: SQLGetFunctions0
       type(c_ptr),intent(in),value :: ConnectionHandle
       integer(kind=c_short),intent(in),value :: FunctionId
       integer(kind=c_short),intent(out) :: Supported
@@ -209,7 +209,7 @@ module fodbc
       ParameterScale,ParameterValue,StrLen_or_Ind) &
       bind(C, name="SQLSetParam")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLSetParam
+      !GCC$ ATTRIBUTES STDCALL :: SQLSetParam0
       type(c_ptr),intent(in),value :: StatementHandle
       integer(kind=c_short),intent(in),value :: ParameterNumber
       integer(kind=c_short),intent(in),value :: ValueType
@@ -226,7 +226,7 @@ module fodbc
       (HandleType,Handle,CompletionType) &
       bind(C, name="SQLEndTran")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLEndTran
+      !GCC$ ATTRIBUTES STDCALL :: SQLEndTran0
       integer(kind=c_short),intent(in),value :: HandleType
       type(c_ptr),intent(in),value :: Handle
       integer(kind=c_short),intent(in),value :: CompletionType
@@ -239,7 +239,7 @@ module fodbc
       TableName,NameLength3,ColumnName,NameLength4) &
       bind(C, name="SQLColumns")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLColumns
+      !GCC$ ATTRIBUTES STDCALL :: SQLColumns0
       type(c_ptr),intent(in),value :: StatementHandle
       character(kind=c_char) :: CatalogName
       integer(kind=c_short),intent(in),value :: NameLength1
@@ -257,7 +257,7 @@ module fodbc
       (ConnectionHandle,Attribute,Value,StringLength) &
       bind(C, name="SQLSetConnectAttr")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLSetConnectAttr
+      !GCC$ ATTRIBUTES STDCALL :: SQLSetConnectAttr0
       type(c_ptr),intent(in),value :: ConnectionHandle
       integer(kind=c_long),intent(in),value :: Attribute
       type(c_ptr),intent(in),value :: Value
@@ -271,7 +271,7 @@ module fodbc
       MessageText,BufferLength,TextLength) &
       bind(C, name="SQLError")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLError
+      !GCC$ ATTRIBUTES STDCALL :: SQLError0
       type(c_ptr),intent(in),value :: EnvironmentHandle
       type(c_ptr),intent(in),value :: ConnectionHandle
       type(c_ptr),intent(in),value :: StatementHandle
@@ -288,7 +288,7 @@ module fodbc
       (hstmt,fConcurrency,crowKeyset,crowRowset) &
       bind(C, name="SQLSetScrollOptions")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLSetScrollOptions
+      !GCC$ ATTRIBUTES STDCALL :: SQLSetScrollOptions0
       type(c_ptr),intent(in),value :: hstmt
       integer(kind=c_short),intent(in),value :: fConcurrency
       integer(kind=c_long),intent(in),value :: crowKeyset
@@ -301,7 +301,7 @@ module fodbc
       (var1) &
       bind(C, name="TraceVSControl")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: TraceVSControl
+      !GCC$ ATTRIBUTES STDCALL :: TraceVSControl0
       integer(kind=c_long),intent(in),value :: var1
     end function TraceVSControl0
   end interface TraceVSControl
@@ -311,7 +311,7 @@ module fodbc
       (hstmt,fAttribute,rgbValue,cbValueMax,pcbValue) &
       bind(C, name="SQLGetStmtAttrA")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLGetStmtAttrA
+      !GCC$ ATTRIBUTES STDCALL :: SQLGetStmtAttrA0
       type(c_ptr),intent(in),value :: hstmt
       integer(kind=c_long),intent(in),value :: fAttribute
       type(c_ptr),intent(in),value :: rgbValue
@@ -326,7 +326,7 @@ module fodbc
       szProcName,cbProcName,szColumnName,cbColumnName) &
       bind(C, name="SQLProcedureColumnsA")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLProcedureColumnsA
+      !GCC$ ATTRIBUTES STDCALL :: SQLProcedureColumnsA0
       type(c_ptr),intent(in),value :: hstmt
       character(kind=c_char) :: szCatalogName
       integer(kind=c_short),intent(in),value :: cbCatalogName
@@ -344,7 +344,7 @@ module fodbc
       (StatementHandle,CursorName,BufferLength,NameLength) &
       bind(C, name="SQLGetCursorName")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLGetCursorName
+      !GCC$ ATTRIBUTES STDCALL :: SQLGetCursorName0
       type(c_ptr),intent(in),value :: StatementHandle
       character(kind=c_char) :: CursorName
       integer(kind=c_short),intent(in),value :: BufferLength
@@ -357,7 +357,7 @@ module fodbc
       (StatementHandle,StatementText,TextLength) &
       bind(C, name="SQLPrepare")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLPrepare
+      !GCC$ ATTRIBUTES STDCALL :: SQLPrepare0
       type(c_ptr),intent(in),value :: StatementHandle
       character(kind=c_char) :: StatementText
       integer(kind=c_long),intent(in),value :: TextLength
@@ -370,7 +370,7 @@ module fodbc
       szTableName,cbTableName) &
       bind(C, name="SQLTablePrivilegesA")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLTablePrivilegesA
+      !GCC$ ATTRIBUTES STDCALL :: SQLTablePrivilegesA0
       type(c_ptr),intent(in),value :: hstmt
       character(kind=c_char) :: szCatalogName
       integer(kind=c_short),intent(in),value :: cbCatalogName
@@ -386,7 +386,7 @@ module fodbc
       (EnvironmentHandle) &
       bind(C, name="SQLAllocEnv")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLAllocEnv
+      !GCC$ ATTRIBUTES STDCALL :: SQLAllocEnv0
       type(c_ptr),intent(out) :: EnvironmentHandle
     end function SQLAllocEnv0
   end interface SQLAllocEnv
@@ -397,7 +397,7 @@ module fodbc
       szTableName,cbTableName) &
       bind(C, name="SQLTablePrivilegesW")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLTablePrivilegesW
+      !GCC$ ATTRIBUTES STDCALL :: SQLTablePrivilegesW0
       type(c_ptr),intent(in),value :: hstmt
       integer(kind=c_short),intent(out) :: szCatalogName
       integer(kind=c_short),intent(in),value :: cbCatalogName
@@ -413,7 +413,7 @@ module fodbc
       (hdbc,fInfoType,rgbInfoValue,cbInfoValueMax,pcbInfoValue) &
       bind(C, name="SQLGetInfoA")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLGetInfoA
+      !GCC$ ATTRIBUTES STDCALL :: SQLGetInfoA0
       type(c_ptr),intent(in),value :: hdbc
       integer(kind=c_short),intent(in),value :: fInfoType
       type(c_ptr),intent(in),value :: rgbInfoValue
@@ -427,7 +427,7 @@ module fodbc
       (hdbc,fInfoType,rgbInfoValue,cbInfoValueMax,pcbInfoValue) &
       bind(C, name="SQLGetInfoW")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLGetInfoW
+      !GCC$ ATTRIBUTES STDCALL :: SQLGetInfoW0
       type(c_ptr),intent(in),value :: hdbc
       integer(kind=c_short),intent(in),value :: fInfoType
       type(c_ptr),intent(in),value :: rgbInfoValue
@@ -442,7 +442,7 @@ module fodbc
       Authentication,NameLength3) &
       bind(C, name="SQLConnect")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLConnect
+      !GCC$ ATTRIBUTES STDCALL :: SQLConnect0
       type(c_ptr),intent(in),value :: ConnectionHandle
       character(kind=c_char) :: ServerName
       integer(kind=c_short),intent(in),value :: NameLength1
@@ -458,7 +458,7 @@ module fodbc
       (hdbc,fAttribute,rgbValue,cbValueMax,pcbValue) &
       bind(C, name="SQLGetConnectAttrA")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLGetConnectAttrA
+      !GCC$ ATTRIBUTES STDCALL :: SQLGetConnectAttrA0
       type(c_ptr),intent(in),value :: hdbc
       integer(kind=c_long),intent(in),value :: fAttribute
       type(c_ptr),intent(in),value :: rgbValue
@@ -473,7 +473,7 @@ module fodbc
       pcbCharAttr,pNumAttr) &
       bind(C, name="SQLColAttributeW")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLColAttributeW
+      !GCC$ ATTRIBUTES STDCALL :: SQLColAttributeW0
       type(c_ptr),intent(in),value :: hstmt
       integer(kind=c_short),intent(in),value :: iCol
       integer(kind=c_short),intent(in),value :: iField
@@ -490,7 +490,7 @@ module fodbc
       pcbDesc,pfDesc) &
       bind(C, name="SQLColAttributes")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLColAttributes
+      !GCC$ ATTRIBUTES STDCALL :: SQLColAttributes0
       type(c_ptr),intent(in),value :: hstmt
       integer(kind=c_short),intent(in),value :: icol
       integer(kind=c_short),intent(in),value :: fDescType
@@ -506,7 +506,7 @@ module fodbc
       (hstmt,szSqlStr,cbSqlStr) &
       bind(C, name="SQLPrepareA")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLPrepareA
+      !GCC$ ATTRIBUTES STDCALL :: SQLPrepareA0
       type(c_ptr),intent(in),value :: hstmt
       character(kind=c_char) :: szSqlStr
       integer(kind=c_long),intent(in),value :: cbSqlStr
@@ -518,7 +518,7 @@ module fodbc
       (hstmt,szSqlStr,cbSqlStr) &
       bind(C, name="SQLPrepareW")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLPrepareW
+      !GCC$ ATTRIBUTES STDCALL :: SQLPrepareW0
       type(c_ptr),intent(in),value :: hstmt
       integer(kind=c_short),intent(out) :: szSqlStr
       integer(kind=c_long),intent(in),value :: cbSqlStr
@@ -530,7 +530,7 @@ module fodbc
       (hstmt,fAttribute,rgbValue,cbValueMax,pcbValue) &
       bind(C, name="SQLGetStmtAttrW")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLGetStmtAttrW
+      !GCC$ ATTRIBUTES STDCALL :: SQLGetStmtAttrW0
       type(c_ptr),intent(in),value :: hstmt
       integer(kind=c_long),intent(in),value :: fAttribute
       type(c_ptr),intent(in),value :: rgbValue
@@ -545,7 +545,7 @@ module fodbc
       cbDiagInfoMax,pcbDiagInfo) &
       bind(C, name="SQLGetDiagFieldA")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLGetDiagFieldA
+      !GCC$ ATTRIBUTES STDCALL :: SQLGetDiagFieldA0
       integer(kind=c_short),intent(in),value :: fHandleType
       type(c_ptr),intent(in),value :: handle
       integer(kind=c_short),intent(in),value :: iRecord
@@ -562,7 +562,7 @@ module fodbc
       cbDiagInfoMax,pcbDiagInfo) &
       bind(C, name="SQLGetDiagFieldW")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLGetDiagFieldW
+      !GCC$ ATTRIBUTES STDCALL :: SQLGetDiagFieldW0
       integer(kind=c_short),intent(in),value :: fHandleType
       type(c_ptr),intent(in),value :: handle
       integer(kind=c_short),intent(in),value :: iRecord
@@ -579,7 +579,7 @@ module fodbc
       pcbConnStrOut) &
       bind(C, name="SQLBrowseConnect")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLBrowseConnect
+      !GCC$ ATTRIBUTES STDCALL :: SQLBrowseConnect0
       type(c_ptr),intent(in),value :: hdbc
       character(kind=c_char) :: szConnStrIn
       integer(kind=c_short),intent(in),value :: cbConnStrIn
@@ -594,7 +594,7 @@ module fodbc
       (StatementHandle) &
       bind(C, name="SQLExecute")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLExecute
+      !GCC$ ATTRIBUTES STDCALL :: SQLExecute0
       type(c_ptr),intent(in),value :: StatementHandle
     end function SQLExecute0
   end interface SQLExecute
@@ -604,7 +604,7 @@ module fodbc
       (var1,var2,var3,var4) &
       bind(C, name="TraceOpenLogFile")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: TraceOpenLogFile
+      !GCC$ ATTRIBUTES STDCALL :: TraceOpenLogFile0
       type(c_ptr),intent(in),value :: var1
       character(kind=c_char) :: var2
       character(kind=c_char) :: var3
@@ -617,7 +617,7 @@ module fodbc
       (hstmt,fFetchType,irow,pcrow,rgfRowStatus) &
       bind(C, name="SQLExtendedFetch")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLExtendedFetch
+      !GCC$ ATTRIBUTES STDCALL :: SQLExtendedFetch0
       type(c_ptr),intent(in),value :: hstmt
       integer(kind=c_short),intent(in),value :: fFetchType
       integer(kind=c_long),intent(in),value :: irow
@@ -632,7 +632,7 @@ module fodbc
       szDriverAttributes,cbDrvrAttrMax,pcbDrvrAttr) &
       bind(C, name="SQLDrivers")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLDrivers
+      !GCC$ ATTRIBUTES STDCALL :: SQLDrivers0
       type(c_ptr),intent(in),value :: henv
       integer(kind=c_short),intent(in),value :: fDirection
       character(kind=c_char) :: szDriverDesc
@@ -650,7 +650,7 @@ module fodbc
       NameLength2,TableName,NameLength3,Scope,Nullable) &
       bind(C, name="SQLSpecialColumns")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLSpecialColumns
+      !GCC$ ATTRIBUTES STDCALL :: SQLSpecialColumns0
       type(c_ptr),intent(in),value :: StatementHandle
       integer(kind=c_short),intent(in),value :: IdentifierType
       character(kind=c_char) :: CatalogName
@@ -669,7 +669,7 @@ module fodbc
       (StatementHandle,RowCount) &
       bind(C, name="SQLRowCount")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLRowCount
+      !GCC$ ATTRIBUTES STDCALL :: SQLRowCount0
       type(c_ptr),intent(in),value :: StatementHandle
       integer(kind=c_long),intent(out) :: RowCount
     end function SQLRowCount0
@@ -681,7 +681,7 @@ module fodbc
       DataType,ColumnSize,DecimalDigits,Nullable) &
       bind(C, name="SQLDescribeCol")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLDescribeCol
+      !GCC$ ATTRIBUTES STDCALL :: SQLDescribeCol0
       type(c_ptr),intent(in),value :: StatementHandle
       integer(kind=c_short),intent(in),value :: ColumnNumber
       character(kind=c_char) :: ColumnName
@@ -700,7 +700,7 @@ module fodbc
       StrLen_or_Ind) &
       bind(C, name="SQLBindCol")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLBindCol
+      !GCC$ ATTRIBUTES STDCALL :: SQLBindCol0
       type(c_ptr),intent(in),value :: StatementHandle
       integer(kind=c_short),intent(in),value :: ColumnNumber
       integer(kind=c_short),intent(in),value :: TargetType
@@ -721,7 +721,7 @@ module fodbc
       cbFkSchemaName,szFkTableName,cbFkTableName) &
       bind(C, name="SQLForeignKeysA")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLForeignKeysA
+      !GCC$ ATTRIBUTES STDCALL :: SQLForeignKeysA0
       type(c_ptr),intent(in),value :: hstmt
       character(kind=c_char) :: szPkCatalogName
       integer(kind=c_short),intent(in),value :: cbPkCatalogName
@@ -744,7 +744,7 @@ module fodbc
       MessageText,BufferLength,TextLength) &
       bind(C, name="SQLGetDiagRec")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLGetDiagRec
+      !GCC$ ATTRIBUTES STDCALL :: SQLGetDiagRec0
       integer(kind=c_short),intent(in),value :: HandleType
       type(c_ptr),intent(in),value :: Handle
       integer(kind=c_short),intent(in),value :: RecNumber
@@ -761,7 +761,7 @@ module fodbc
       (ConnectionHandle) &
       bind(C, name="SQLFreeConnect")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLFreeConnect
+      !GCC$ ATTRIBUTES STDCALL :: SQLFreeConnect0
       type(c_ptr),intent(in),value :: ConnectionHandle
     end function SQLFreeConnect0
   end interface SQLFreeConnect
@@ -771,7 +771,7 @@ module fodbc
       (hstmt,szCursor,cbCursorMax,pcbCursor) &
       bind(C, name="SQLGetCursorNameA")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLGetCursorNameA
+      !GCC$ ATTRIBUTES STDCALL :: SQLGetCursorNameA0
       type(c_ptr),intent(in),value :: hstmt
       character(kind=c_char) :: szCursor
       integer(kind=c_short),intent(in),value :: cbCursorMax
@@ -785,7 +785,7 @@ module fodbc
       szTableName,cbTableName) &
       bind(C, name="SQLTablePrivileges")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLTablePrivileges
+      !GCC$ ATTRIBUTES STDCALL :: SQLTablePrivileges0
       type(c_ptr),intent(in),value :: hstmt
       character(kind=c_char) :: szCatalogName
       integer(kind=c_short),intent(in),value :: cbCatalogName
@@ -802,7 +802,7 @@ module fodbc
       Description,BufferLength2,NameLength2) &
       bind(C, name="SQLDataSources")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLDataSources
+      !GCC$ ATTRIBUTES STDCALL :: SQLDataSources0
       type(c_ptr),intent(in),value :: EnvironmentHandle
       integer(kind=c_short),intent(in),value :: Direction
       character(kind=c_char) :: ServerName
@@ -820,7 +820,7 @@ module fodbc
       BufferLength,StringLength) &
       bind(C, name="SQLGetDiagField")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLGetDiagField
+      !GCC$ ATTRIBUTES STDCALL :: SQLGetDiagField0
       integer(kind=c_short),intent(in),value :: HandleType
       type(c_ptr),intent(in),value :: Handle
       integer(kind=c_short),intent(in),value :: RecNumber
@@ -838,7 +838,7 @@ module fodbc
       Nullable) &
       bind(C, name="SQLGetDescRec")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLGetDescRec
+      !GCC$ ATTRIBUTES STDCALL :: SQLGetDescRec0
       type(c_ptr),intent(in),value :: DescriptorHandle
       integer(kind=c_short),intent(in),value :: RecNumber
       character(kind=c_char) :: Name
@@ -859,7 +859,7 @@ module fodbc
       pfSqlType,pcbColDef,pibScale,pfNullable) &
       bind(C, name="SQLDescribeColA")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLDescribeColA
+      !GCC$ ATTRIBUTES STDCALL :: SQLDescribeColA0
       type(c_ptr),intent(in),value :: hstmt
       integer(kind=c_short),intent(in),value :: icol
       character(kind=c_char) :: szColName
@@ -877,7 +877,7 @@ module fodbc
       () &
       bind(C, name="TraceVersion")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: TraceVersion
+      !GCC$ ATTRIBUTES STDCALL :: TraceVersion0
     end function TraceVersion0
   end interface TraceVersion
 
@@ -886,7 +886,7 @@ module fodbc
       (hdbc,fOption,vParam) &
       bind(C, name="SQLSetConnectOptionW")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLSetConnectOptionW
+      !GCC$ ATTRIBUTES STDCALL :: SQLSetConnectOptionW0
       type(c_ptr),intent(in),value :: hdbc
       integer(kind=c_short),intent(in),value :: fOption
       integer(kind=c_long),intent(in),value :: vParam
@@ -898,7 +898,7 @@ module fodbc
       (StatementHandle,Operation) &
       bind(C, name="SQLBulkOperations")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLBulkOperations
+      !GCC$ ATTRIBUTES STDCALL :: SQLBulkOperations0
       type(c_ptr),intent(in),value :: StatementHandle
       integer(kind=c_short),intent(in),value :: Operation
     end function SQLBulkOperations0
@@ -910,7 +910,7 @@ module fodbc
       szTableName,cbTableName,szTableType,cbTableType) &
       bind(C, name="SQLTablesA")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLTablesA
+      !GCC$ ATTRIBUTES STDCALL :: SQLTablesA0
       type(c_ptr),intent(in),value :: hstmt
       character(kind=c_char) :: szCatalogName
       integer(kind=c_short),intent(in),value :: cbCatalogName
@@ -928,7 +928,7 @@ module fodbc
       (StatementHandle,DataTyoe) &
       bind(C, name="SQLGetTypeInfoA")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLGetTypeInfoA
+      !GCC$ ATTRIBUTES STDCALL :: SQLGetTypeInfoA0
       type(c_ptr),intent(in),value :: StatementHandle
       integer(kind=c_short),intent(in),value :: DataTyoe
     end function SQLGetTypeInfoA0
@@ -939,7 +939,7 @@ module fodbc
       (StatementHandle,DataType) &
       bind(C, name="SQLGetTypeInfoW")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLGetTypeInfoW
+      !GCC$ ATTRIBUTES STDCALL :: SQLGetTypeInfoW0
       type(c_ptr),intent(in),value :: StatementHandle
       integer(kind=c_short),intent(in),value :: DataType
     end function SQLGetTypeInfoW0
@@ -950,7 +950,7 @@ module fodbc
       (hstmt,irow,fOption,fLock) &
       bind(C, name="SQLSetPos")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLSetPos
+      !GCC$ ATTRIBUTES STDCALL :: SQLSetPos0
       type(c_ptr),intent(in),value :: hstmt
       integer(kind=c_short),intent(in),value :: irow
       integer(kind=c_short),intent(in),value :: fOption
@@ -963,7 +963,7 @@ module fodbc
       (ConnectionHandle,Option,Value) &
       bind(C, name="SQLGetConnectOption")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLGetConnectOption
+      !GCC$ ATTRIBUTES STDCALL :: SQLGetConnectOption0
       type(c_ptr),intent(in),value :: ConnectionHandle
       integer(kind=c_short),intent(in),value :: Option
       type(c_ptr),intent(in),value :: Value
@@ -975,7 +975,7 @@ module fodbc
       (StatementHandle,Attribute,Value,StringLength) &
       bind(C, name="SQLSetStmtAttr")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLSetStmtAttr
+      !GCC$ ATTRIBUTES STDCALL :: SQLSetStmtAttr0
       type(c_ptr),intent(in),value :: StatementHandle
       integer(kind=c_long),intent(in),value :: Attribute
       type(c_ptr),intent(in),value :: Value
@@ -988,7 +988,7 @@ module fodbc
       (DescriptorHandle,RecNumber,FieldIdentifier,Value,BufferLength) &
       bind(C, name="SQLSetDescFieldW")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLSetDescFieldW
+      !GCC$ ATTRIBUTES STDCALL :: SQLSetDescFieldW0
       type(c_ptr),intent(in),value :: DescriptorHandle
       integer(kind=c_short),intent(in),value :: RecNumber
       integer(kind=c_short),intent(in),value :: FieldIdentifier
@@ -1002,7 +1002,7 @@ module fodbc
       (StatementHandle,Option) &
       bind(C, name="SQLFreeStmt")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLFreeStmt
+      !GCC$ ATTRIBUTES STDCALL :: SQLFreeStmt0
       type(c_ptr),intent(in),value :: StatementHandle
       integer(kind=c_short),intent(in),value :: Option
     end function SQLFreeStmt0
@@ -1013,7 +1013,7 @@ module fodbc
       (StatementHandle,Option,Value) &
       bind(C, name="SQLGetStmtOption")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLGetStmtOption
+      !GCC$ ATTRIBUTES STDCALL :: SQLGetStmtOption0
       type(c_ptr),intent(in),value :: StatementHandle
       integer(kind=c_short),intent(in),value :: Option
       type(c_ptr),intent(in),value :: Value
@@ -1025,7 +1025,7 @@ module fodbc
       (HandleType,Handle) &
       bind(C, name="SQLFreeHandle")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLFreeHandle
+      !GCC$ ATTRIBUTES STDCALL :: SQLFreeHandle0
       integer(kind=c_short),intent(in),value :: HandleType
       type(c_ptr),intent(in),value :: Handle
     end function SQLFreeHandle0
@@ -1036,7 +1036,7 @@ module fodbc
       (hstmt,fOption,vParam) &
       bind(C, name="SQLSetStmtOptionA")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLSetStmtOptionA
+      !GCC$ ATTRIBUTES STDCALL :: SQLSetStmtOptionA0
       type(c_ptr),intent(in),value :: hstmt
       integer(kind=c_short),intent(in),value :: fOption
       integer(kind=c_long),intent(in),value :: vParam
@@ -1048,7 +1048,7 @@ module fodbc
       (DescriptorHandle,RecNumber,FieldIdentifier,Value,BufferLength) &
       bind(C, name="SQLSetDescField")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLSetDescField
+      !GCC$ ATTRIBUTES STDCALL :: SQLSetDescField0
       type(c_ptr),intent(in),value :: DescriptorHandle
       integer(kind=c_short),intent(in),value :: RecNumber
       integer(kind=c_short),intent(in),value :: FieldIdentifier
@@ -1063,7 +1063,7 @@ module fodbc
       cbConnStrOutMax,pcbConnStrOut,fDriverCompletion) &
       bind(C, name="SQLDriverConnectA")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLDriverConnectA
+      !GCC$ ATTRIBUTES STDCALL :: SQLDriverConnectA0
       type(c_ptr),intent(in),value :: hdbc
       type(c_ptr),intent(in),value :: hwnd
       character(kind=c_char) :: szConnStrIn
@@ -1082,7 +1082,7 @@ module fodbc
       cbFkSchemaName,szFkTableName,cbFkTableName) &
       bind(C, name="SQLForeignKeysW")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLForeignKeysW
+      !GCC$ ATTRIBUTES STDCALL :: SQLForeignKeysW0
       type(c_ptr),intent(in),value :: hstmt
       integer(kind=c_short),intent(out) :: szPkCatalogName
       integer(kind=c_short),intent(in),value :: cbPkCatalogName
@@ -1104,7 +1104,7 @@ module fodbc
       (StatementHandle,Attribute,Value,BufferLength,StringLength) &
       bind(C, name="SQLGetStmtAttr")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLGetStmtAttr
+      !GCC$ ATTRIBUTES STDCALL :: SQLGetStmtAttr0
       type(c_ptr),intent(in),value :: StatementHandle
       integer(kind=c_long),intent(in),value :: Attribute
       type(c_ptr),intent(in),value :: Value
@@ -1119,7 +1119,7 @@ module fodbc
       pcbConnStrOut) &
       bind(C, name="SQLBrowseConnectA")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLBrowseConnectA
+      !GCC$ ATTRIBUTES STDCALL :: SQLBrowseConnectA0
       type(c_ptr),intent(in),value :: hdbc
       character(kind=c_char) :: szConnStrIn
       integer(kind=c_short),intent(in),value :: cbConnStrIn
@@ -1134,7 +1134,7 @@ module fodbc
       (StatementHandle,Value) &
       bind(C, name="SQLParamData")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLParamData
+      !GCC$ ATTRIBUTES STDCALL :: SQLParamData0
       type(c_ptr),intent(in),value :: StatementHandle
       type(c_ptr),intent(out) :: Value
     end function SQLParamData0
@@ -1145,7 +1145,7 @@ module fodbc
       (ConnectionHandle,Attribute,Value,BufferLength,StringLength) &
       bind(C, name="SQLGetConnectAttr")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLGetConnectAttr
+      !GCC$ ATTRIBUTES STDCALL :: SQLGetConnectAttr0
       type(c_ptr),intent(in),value :: ConnectionHandle
       integer(kind=c_long),intent(in),value :: Attribute
       type(c_ptr),intent(in),value :: Value
@@ -1159,7 +1159,7 @@ module fodbc
       (StatementHandle,ColumnCount) &
       bind(C, name="SQLNumResultCols")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLNumResultCols
+      !GCC$ ATTRIBUTES STDCALL :: SQLNumResultCols0
       type(c_ptr),intent(in),value :: StatementHandle
       integer(kind=c_short),intent(out) :: ColumnCount
     end function SQLNumResultCols0
@@ -1170,7 +1170,7 @@ module fodbc
       (HandleType,InputHandle,OutputHandle) &
       bind(C, name="SQLAllocHandle")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLAllocHandle
+      !GCC$ ATTRIBUTES STDCALL :: SQLAllocHandle0
       integer(kind=c_short),intent(in),value :: HandleType
       type(c_ptr),intent(in),value :: InputHandle
       type(c_ptr),intent(out) :: OutputHandle
@@ -1183,7 +1183,7 @@ module fodbc
       szAuthStr,cbAuthStr) &
       bind(C, name="SQLConnectA")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLConnectA
+      !GCC$ ATTRIBUTES STDCALL :: SQLConnectA0
       type(c_ptr),intent(in),value :: hdbc
       character(kind=c_char) :: szDSN
       integer(kind=c_short),intent(in),value :: cbDSN
@@ -1200,7 +1200,7 @@ module fodbc
       szAuthStr,cbAuthStr) &
       bind(C, name="SQLConnectW")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLConnectW
+      !GCC$ ATTRIBUTES STDCALL :: SQLConnectW0
       type(c_ptr),intent(in),value :: hdbc
       integer(kind=c_short),intent(out) :: szDSN
       integer(kind=c_short),intent(in),value :: cbDSN
@@ -1216,7 +1216,7 @@ module fodbc
       (hstmt,pcpar) &
       bind(C, name="SQLNumParams")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLNumParams
+      !GCC$ ATTRIBUTES STDCALL :: SQLNumParams0
       type(c_ptr),intent(in),value :: hstmt
       integer(kind=c_short),intent(out) :: pcpar
     end function SQLNumParams0
@@ -1228,7 +1228,7 @@ module fodbc
       cbConnStrOutMax,pcbConnStrOut,fDriverCompletion) &
       bind(C, name="SQLDriverConnectW")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLDriverConnectW
+      !GCC$ ATTRIBUTES STDCALL :: SQLDriverConnectW0
       type(c_ptr),intent(in),value :: hdbc
       type(c_ptr),intent(in),value :: hwnd
       integer(kind=c_short),intent(out) :: szConnStrIn
@@ -1246,7 +1246,7 @@ module fodbc
       cbSchemaName,szTableName,cbTableName,fScope,fNullable) &
       bind(C, name="SQLSpecialColumnsA")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLSpecialColumnsA
+      !GCC$ ATTRIBUTES STDCALL :: SQLSpecialColumnsA0
       type(c_ptr),intent(in),value :: hstmt
       integer(kind=c_short),intent(in),value :: fColType
       character(kind=c_char) :: szCatalogName
@@ -1266,7 +1266,7 @@ module fodbc
       cbColDef,ibScale,rgbValue,cbValueMax,pcbValue) &
       bind(C, name="SQLBindParameter")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLBindParameter
+      !GCC$ ATTRIBUTES STDCALL :: SQLBindParameter0
       type(c_ptr),intent(in),value :: hstmt
       integer(kind=c_short),intent(in),value :: ipar
       integer(kind=c_short),intent(in),value :: fParamType
@@ -1298,7 +1298,7 @@ module fodbc
       cbSchemaName,szTableName,cbTableName,fScope,fNullable) &
       bind(C, name="SQLSpecialColumnsW")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLSpecialColumnsW
+      !GCC$ ATTRIBUTES STDCALL :: SQLSpecialColumnsW0
       type(c_ptr),intent(in),value :: hstmt
       integer(kind=c_short),intent(in),value :: fColType
       integer(kind=c_short),intent(out) :: szCatalogName
@@ -1317,7 +1317,7 @@ module fodbc
       (hdbc,fAttribute,rgbValue,cbValueMax,pcbValue) &
       bind(C, name="SQLGetConnectAttrW")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLGetConnectAttrW
+      !GCC$ ATTRIBUTES STDCALL :: SQLGetConnectAttrW0
       type(c_ptr),intent(in),value :: hdbc
       integer(kind=c_long),intent(in),value :: fAttribute
       type(c_ptr),intent(in),value :: rgbValue
@@ -1331,7 +1331,7 @@ module fodbc
       (hstmt,szSqlStr,cbSqlStr) &
       bind(C, name="SQLExecDirectW")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLExecDirectW
+      !GCC$ ATTRIBUTES STDCALL :: SQLExecDirectW0
       type(c_ptr),intent(in),value :: hstmt
       integer(kind=c_short),intent(out) :: szSqlStr
       integer(kind=c_long),intent(in),value :: cbSqlStr
@@ -1343,7 +1343,7 @@ module fodbc
       (ConnectionHandle) &
       bind(C, name="SQLDisconnect")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLDisconnect
+      !GCC$ ATTRIBUTES STDCALL :: SQLDisconnect0
       type(c_ptr),intent(in),value :: ConnectionHandle
     end function SQLDisconnect0
   end interface SQLDisconnect
@@ -1353,7 +1353,7 @@ module fodbc
       (StatementHandle,DataType) &
       bind(C, name="SQLGetTypeInfo")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLGetTypeInfo
+      !GCC$ ATTRIBUTES STDCALL :: SQLGetTypeInfo0
       type(c_ptr),intent(in),value :: StatementHandle
       integer(kind=c_short),intent(in),value :: DataType
     end function SQLGetTypeInfo0
@@ -1365,7 +1365,7 @@ module fodbc
       TableName,NameLength3,Unique,Reserved) &
       bind(C, name="SQLStatistics")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLStatistics
+      !GCC$ ATTRIBUTES STDCALL :: SQLStatistics0
       type(c_ptr),intent(in),value :: StatementHandle
       character(kind=c_char) :: CatalogName
       integer(kind=c_short),intent(in),value :: NameLength1
@@ -1384,7 +1384,7 @@ module fodbc
       StringLength) &
       bind(C, name="SQLGetDescField")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLGetDescField
+      !GCC$ ATTRIBUTES STDCALL :: SQLGetDescField0
       type(c_ptr),intent(in),value :: DescriptorHandle
       integer(kind=c_short),intent(in),value :: RecNumber
       integer(kind=c_short),intent(in),value :: FieldIdentifier
@@ -1399,7 +1399,7 @@ module fodbc
       (StatementHandle,CursorName,NameLength) &
       bind(C, name="SQLSetCursorName")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLSetCursorName
+      !GCC$ ATTRIBUTES STDCALL :: SQLSetCursorName0
       type(c_ptr),intent(in),value :: StatementHandle
       character(kind=c_char) :: CursorName
       integer(kind=c_short),intent(in),value :: NameLength
@@ -1412,7 +1412,7 @@ module fodbc
       szTableName,cbTableName) &
       bind(C, name="SQLPrimaryKeysA")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLPrimaryKeysA
+      !GCC$ ATTRIBUTES STDCALL :: SQLPrimaryKeysA0
       type(c_ptr),intent(in),value :: hstmt
       character(kind=c_char) :: szCatalogName
       integer(kind=c_short),intent(in),value :: cbCatalogName
@@ -1429,7 +1429,7 @@ module fodbc
       pfSqlType,pcbColDef,pibScale,pfNullable) &
       bind(C, name="SQLDescribeColW")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLDescribeColW
+      !GCC$ ATTRIBUTES STDCALL :: SQLDescribeColW0
       type(c_ptr),intent(in),value :: hstmt
       integer(kind=c_short),intent(in),value :: icol
       integer(kind=c_short),intent(out) :: szColName
@@ -1447,7 +1447,7 @@ module fodbc
       (EnvironmentHandle,ConnectionHandle) &
       bind(C, name="SQLAllocConnect")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLAllocConnect
+      !GCC$ ATTRIBUTES STDCALL :: SQLAllocConnect0
       type(c_ptr),intent(in),value :: EnvironmentHandle
       type(c_ptr),intent(out) :: ConnectionHandle
     end function SQLAllocConnect0
@@ -1459,7 +1459,7 @@ module fodbc
       cbConnStrOutMax,pcbConnStrOut,fDriverCompletion) &
       bind(C, name="SQLDriverConnect")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLDriverConnect
+      !GCC$ ATTRIBUTES STDCALL :: SQLDriverConnect0
       type(c_ptr),intent(in),value :: hdbc
       type(c_ptr),intent(in),value :: hwnd
       character(kind=c_char) :: szConnStrIn
@@ -1476,7 +1476,7 @@ module fodbc
       (dwValue) &
       bind(C, name="ODBCSetTryWaitValue")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: ODBCSetTryWaitValue
+      !GCC$ ATTRIBUTES STDCALL :: ODBCSetTryWaitValue0
       integer(kind=c_long),intent(in),value :: dwValue
     end function ODBCSetTryWaitValue0
   end interface ODBCSetTryWaitValue
@@ -1487,7 +1487,7 @@ module fodbc
       szProcName,cbProcName,szColumnName,cbColumnName) &
       bind(C, name="SQLProcedureColumnsW")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLProcedureColumnsW
+      !GCC$ ATTRIBUTES STDCALL :: SQLProcedureColumnsW0
       type(c_ptr),intent(in),value :: hstmt
       integer(kind=c_short),intent(out) :: szCatalogName
       integer(kind=c_short),intent(in),value :: cbCatalogName
@@ -1505,7 +1505,7 @@ module fodbc
       (SourceDescHandle,TargetDescHandle) &
       bind(C, name="SQLCopyDesc")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLCopyDesc
+      !GCC$ ATTRIBUTES STDCALL :: SQLCopyDesc0
       type(c_ptr),intent(in),value :: SourceDescHandle
       type(c_ptr),intent(in),value :: TargetDescHandle
     end function SQLCopyDesc0
@@ -1517,7 +1517,7 @@ module fodbc
       pcbSqlStr) &
       bind(C, name="SQLNativeSqlA")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLNativeSqlA
+      !GCC$ ATTRIBUTES STDCALL :: SQLNativeSqlA0
       type(c_ptr),intent(in),value :: hdbc
       character(kind=c_char) :: szSqlStrIn
       integer(kind=c_long),intent(in),value :: cbSqlStrIn
@@ -1533,7 +1533,7 @@ module fodbc
       pcbDesc,pfDesc) &
       bind(C, name="SQLColAttributesA")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLColAttributesA
+      !GCC$ ATTRIBUTES STDCALL :: SQLColAttributesA0
       type(c_ptr),intent(in),value :: hstmt
       integer(kind=c_short),intent(in),value :: icol
       integer(kind=c_short),intent(in),value :: fDescType
@@ -1550,7 +1550,7 @@ module fodbc
       Precision,Scale,Data,StringLength,Indicator) &
       bind(C, name="SQLSetDescRec")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLSetDescRec
+      !GCC$ ATTRIBUTES STDCALL :: SQLSetDescRec0
       type(c_ptr),intent(in),value :: DescriptorHandle
       integer(kind=c_short),intent(in),value :: RecNumber
       integer(kind=c_short),intent(in),value :: Type
@@ -1570,7 +1570,7 @@ module fodbc
       szProcName,cbProcName) &
       bind(C, name="SQLProcedures")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLProcedures
+      !GCC$ ATTRIBUTES STDCALL :: SQLProcedures0
       type(c_ptr),intent(in),value :: hstmt
       character(kind=c_char) :: szCatalogName
       integer(kind=c_short),intent(in),value :: cbCatalogName
@@ -1586,7 +1586,7 @@ module fodbc
       (StatementHandle,Data,StrLen_or_Ind) &
       bind(C, name="SQLPutData")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLPutData
+      !GCC$ ATTRIBUTES STDCALL :: SQLPutData0
       type(c_ptr),intent(in),value :: StatementHandle
       type(c_ptr),intent(in),value :: Data
       integer(kind=c_long),intent(in),value :: StrLen_or_Ind
@@ -1599,7 +1599,7 @@ module fodbc
       szTableName,cbTableName,szColumnName,cbColumnName) &
       bind(C, name="SQLColumnsA")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLColumnsA
+      !GCC$ ATTRIBUTES STDCALL :: SQLColumnsA0
       type(c_ptr),intent(in),value :: hstmt
       character(kind=c_char) :: szCatalogName
       integer(kind=c_short),intent(in),value :: cbCatalogName
@@ -1618,7 +1618,7 @@ module fodbc
       szTableName,cbTableName,szColumnName,cbColumnName) &
       bind(C, name="SQLColumnsW")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLColumnsW
+      !GCC$ ATTRIBUTES STDCALL :: SQLColumnsW0
       type(c_ptr),intent(in),value :: hstmt
       integer(kind=c_short),intent(out) :: szCatalogName
       integer(kind=c_short),intent(in),value :: cbCatalogName
@@ -1636,7 +1636,7 @@ module fodbc
       (hdbc,fAttribute,rgbValue,cbValue) &
       bind(C, name="SQLSetConnectAttrW")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLSetConnectAttrW
+      !GCC$ ATTRIBUTES STDCALL :: SQLSetConnectAttrW0
       type(c_ptr),intent(in),value :: hdbc
       integer(kind=c_long),intent(in),value :: fAttribute
       type(c_ptr),intent(in),value :: rgbValue
@@ -1649,7 +1649,7 @@ module fodbc
       (EnvironmentHandle,Attribute,Value,BufferLength,StringLength) &
       bind(C, name="SQLGetEnvAttr")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLGetEnvAttr
+      !GCC$ ATTRIBUTES STDCALL :: SQLGetEnvAttr0
       type(c_ptr),intent(in),value :: EnvironmentHandle
       integer(kind=c_long),intent(in),value :: Attribute
       type(c_ptr),intent(in),value :: Value
@@ -1664,7 +1664,7 @@ module fodbc
       pcbConnStrOut) &
       bind(C, name="SQLBrowseConnectW")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLBrowseConnectW
+      !GCC$ ATTRIBUTES STDCALL :: SQLBrowseConnectW0
       type(c_ptr),intent(in),value :: hdbc
       integer(kind=c_short),intent(out) :: szConnStrIn
       integer(kind=c_short),intent(in),value :: cbConnStrIn
@@ -1680,7 +1680,7 @@ module fodbc
       pcbDesc,pfDesc) &
       bind(C, name="SQLColAttributesW")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLColAttributesW
+      !GCC$ ATTRIBUTES STDCALL :: SQLColAttributesW0
       type(c_ptr),intent(in),value :: hstmt
       integer(kind=c_short),intent(in),value :: icol
       integer(kind=c_short),intent(in),value :: fDescType
@@ -1696,7 +1696,7 @@ module fodbc
       (StatementHandle,StatementText,TextLength) &
       bind(C, name="SQLExecDirect")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLExecDirect
+      !GCC$ ATTRIBUTES STDCALL :: SQLExecDirect0
       type(c_ptr),intent(in),value :: StatementHandle
       character(kind=c_char) :: StatementText
       integer(kind=c_long),intent(in),value :: TextLength
@@ -1708,7 +1708,7 @@ module fodbc
       (hstmt,szCursor,cbCursorMax,pcbCursor) &
       bind(C, name="SQLGetCursorNameW")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLGetCursorNameW
+      !GCC$ ATTRIBUTES STDCALL :: SQLGetCursorNameW0
       type(c_ptr),intent(in),value :: hstmt
       integer(kind=c_short),intent(out) :: szCursor
       integer(kind=c_short),intent(in),value :: cbCursorMax
@@ -1722,7 +1722,7 @@ module fodbc
       szTableName,cbTableName,szColumnName,cbColumnName) &
       bind(C, name="SQLColumnPrivileges")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLColumnPrivileges
+      !GCC$ ATTRIBUTES STDCALL :: SQLColumnPrivileges0
       type(c_ptr),intent(in),value :: hstmt
       character(kind=c_char) :: szCatalogName
       integer(kind=c_short),intent(in),value :: cbCatalogName
@@ -1741,7 +1741,7 @@ module fodbc
       szTableName,cbTableName,szColumnName,cbColumnName) &
       bind(C, name="SQLColumnPrivilegesA")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLColumnPrivilegesA
+      !GCC$ ATTRIBUTES STDCALL :: SQLColumnPrivilegesA0
       type(c_ptr),intent(in),value :: hstmt
       character(kind=c_char) :: szCatalogName
       integer(kind=c_short),intent(in),value :: cbCatalogName
@@ -1760,7 +1760,7 @@ module fodbc
       szTableName,cbTableName,szColumnName,cbColumnName) &
       bind(C, name="SQLColumnPrivilegesW")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLColumnPrivilegesW
+      !GCC$ ATTRIBUTES STDCALL :: SQLColumnPrivilegesW0
       type(c_ptr),intent(in),value :: hstmt
       integer(kind=c_short),intent(out) :: szCatalogName
       integer(kind=c_short),intent(in),value :: cbCatalogName
@@ -1778,7 +1778,7 @@ module fodbc
       (hdbc,fOption,pvParam) &
       bind(C, name="SQLGetConnectOptionA")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLGetConnectOptionA
+      !GCC$ ATTRIBUTES STDCALL :: SQLGetConnectOptionA0
       type(c_ptr),intent(in),value :: hdbc
       integer(kind=c_short),intent(in),value :: fOption
       type(c_ptr),intent(in),value :: pvParam
@@ -1790,7 +1790,7 @@ module fodbc
       (var1,var2) &
       bind(C, name="TraceReturn")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: TraceReturn
+      !GCC$ ATTRIBUTES STDCALL :: TraceReturn0
       type(c_ptr),intent(in),value :: var1
       integer(kind=c_short),intent(in),value :: var2
     end function TraceReturn0
@@ -1802,7 +1802,7 @@ module fodbc
       szErrorMsg,cbErrorMsgMax,pcbErrorMsg) &
       bind(C, name="SQLGetDiagRecA")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLGetDiagRecA
+      !GCC$ ATTRIBUTES STDCALL :: SQLGetDiagRecA0
       integer(kind=c_short),intent(in),value :: fHandleType
       type(c_ptr),intent(in),value :: handle
       integer(kind=c_short),intent(in),value :: iRecord
@@ -1820,7 +1820,7 @@ module fodbc
       szErrorMsg,cbErrorMsgMax,pcbErrorMsg) &
       bind(C, name="SQLGetDiagRecW")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLGetDiagRecW
+      !GCC$ ATTRIBUTES STDCALL :: SQLGetDiagRecW0
       integer(kind=c_short),intent(in),value :: fHandleType
       type(c_ptr),intent(in),value :: handle
       integer(kind=c_short),intent(in),value :: iRecord
@@ -1838,7 +1838,7 @@ module fodbc
       szTableName,cbTableName) &
       bind(C, name="SQLPrimaryKeys")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLPrimaryKeys
+      !GCC$ ATTRIBUTES STDCALL :: SQLPrimaryKeys0
       type(c_ptr),intent(in),value :: hstmt
       character(kind=c_char) :: szCatalogName
       integer(kind=c_short),intent(in),value :: cbCatalogName
@@ -1854,7 +1854,7 @@ module fodbc
       (hdbc,fOption,vParam) &
       bind(C, name="SQLSetConnectOptionA")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLSetConnectOptionA
+      !GCC$ ATTRIBUTES STDCALL :: SQLSetConnectOptionA0
       type(c_ptr),intent(in),value :: hdbc
       integer(kind=c_short),intent(in),value :: fOption
       integer(kind=c_long),intent(in),value :: vParam
@@ -1868,7 +1868,7 @@ module fodbc
       cbFkSchemaName,szFkTableName,cbFkTableName) &
       bind(C, name="SQLForeignKeys")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLForeignKeys
+      !GCC$ ATTRIBUTES STDCALL :: SQLForeignKeys0
       type(c_ptr),intent(in),value :: hstmt
       character(kind=c_char) :: szPkCatalogName
       integer(kind=c_short),intent(in),value :: cbPkCatalogName
@@ -1890,7 +1890,7 @@ module fodbc
       (hdbc,fAttribute,rgbValue,cbValue) &
       bind(C, name="SQLSetConnectAttrA")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLSetConnectAttrA
+      !GCC$ ATTRIBUTES STDCALL :: SQLSetConnectAttrA0
       type(c_ptr),intent(in),value :: hdbc
       integer(kind=c_long),intent(in),value :: fAttribute
       type(c_ptr),intent(in),value :: rgbValue
@@ -1904,7 +1904,7 @@ module fodbc
       szDriverAttributes,cbDrvrAttrMax,pcbDrvrAttr) &
       bind(C, name="SQLDriversA")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLDriversA
+      !GCC$ ATTRIBUTES STDCALL :: SQLDriversA0
       type(c_ptr),intent(in),value :: henv
       integer(kind=c_short),intent(in),value :: fDirection
       character(kind=c_char) :: szDriverDesc
@@ -1922,7 +1922,7 @@ module fodbc
       pcbCharAttr,pNumAttr) &
       bind(C, name="SQLColAttributeA")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLColAttributeA
+      !GCC$ ATTRIBUTES STDCALL :: SQLColAttributeA0
       type(c_ptr),intent(in),value :: hstmt
       integer(kind=c_short),intent(in),value :: iCol
       integer(kind=c_short),intent(in),value :: iField
@@ -1939,7 +1939,7 @@ module fodbc
       szDriverAttributes,cbDrvrAttrMax,pcbDrvrAttr) &
       bind(C, name="SQLDriversW")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLDriversW
+      !GCC$ ATTRIBUTES STDCALL :: SQLDriversW0
       type(c_ptr),intent(in),value :: henv
       integer(kind=c_short),intent(in),value :: fDirection
       integer(kind=c_short),intent(out) :: szDriverDesc
@@ -1957,7 +1957,7 @@ module fodbc
       szProcName,cbProcName,szColumnName,cbColumnName) &
       bind(C, name="SQLProcedureColumns")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLProcedureColumns
+      !GCC$ ATTRIBUTES STDCALL :: SQLProcedureColumns0
       type(c_ptr),intent(in),value :: hstmt
       character(kind=c_char) :: szCatalogName
       integer(kind=c_short),intent(in),value :: cbCatalogName
@@ -1975,7 +1975,7 @@ module fodbc
       (StatementHandle) &
       bind(C, name="SQLFetch")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLFetch
+      !GCC$ ATTRIBUTES STDCALL :: SQLFetch0
       type(c_ptr),intent(in),value :: StatementHandle
     end function SQLFetch0
   end interface SQLFetch
@@ -1985,7 +1985,7 @@ module fodbc
       (StatementHandle,Option,Value) &
       bind(C, name="SQLSetStmtOption")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLSetStmtOption
+      !GCC$ ATTRIBUTES STDCALL :: SQLSetStmtOption0
       type(c_ptr),intent(in),value :: StatementHandle
       integer(kind=c_short),intent(in),value :: Option
       integer(kind=c_long),intent(in),value :: Value
@@ -1998,7 +1998,7 @@ module fodbc
       szProcName,cbProcName) &
       bind(C, name="SQLProceduresA")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLProceduresA
+      !GCC$ ATTRIBUTES STDCALL :: SQLProceduresA0
       type(c_ptr),intent(in),value :: hstmt
       character(kind=c_char) :: szCatalogName
       integer(kind=c_short),intent(in),value :: cbCatalogName
@@ -2016,7 +2016,7 @@ module fodbc
       pNullable) &
       bind(C, name="SQLGetDescRecA")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLGetDescRecA
+      !GCC$ ATTRIBUTES STDCALL :: SQLGetDescRecA0
       type(c_ptr),intent(in),value :: hdesc
       integer(kind=c_short),intent(in),value :: iRecord
       character(kind=c_char) :: szName
@@ -2038,7 +2038,7 @@ module fodbc
       pNullable) &
       bind(C, name="SQLGetDescRecW")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLGetDescRecW
+      !GCC$ ATTRIBUTES STDCALL :: SQLGetDescRecW0
       type(c_ptr),intent(in),value :: hdesc
       integer(kind=c_short),intent(in),value :: iRecord
       integer(kind=c_short),intent(out) :: szName
@@ -2058,7 +2058,7 @@ module fodbc
       (var1) &
       bind(C, name="TraceCloseLogFile")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: TraceCloseLogFile
+      !GCC$ ATTRIBUTES STDCALL :: TraceCloseLogFile0
       type(c_ptr),intent(in),value :: var1
     end function TraceCloseLogFile0
   end interface TraceCloseLogFile
@@ -2068,7 +2068,7 @@ module fodbc
       (hstmt,szCursor,cbCursor) &
       bind(C, name="SQLSetCursorNameA")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLSetCursorNameA
+      !GCC$ ATTRIBUTES STDCALL :: SQLSetCursorNameA0
       type(c_ptr),intent(in),value :: hstmt
       character(kind=c_char) :: szCursor
       integer(kind=c_short),intent(in),value :: cbCursor
@@ -2080,7 +2080,7 @@ module fodbc
       (hstmt,fOption,pvParam) &
       bind(C, name="SQLGetStmtOptionA")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLGetStmtOptionA
+      !GCC$ ATTRIBUTES STDCALL :: SQLGetStmtOptionA0
       type(c_ptr),intent(in),value :: hstmt
       integer(kind=c_short),intent(in),value :: fOption
       type(c_ptr),intent(in),value :: pvParam
@@ -2093,7 +2093,7 @@ module fodbc
       szErrorMsg,cbErrorMsgMax,pcbErrorMsg) &
       bind(C, name="SQLErrorA")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLErrorA
+      !GCC$ ATTRIBUTES STDCALL :: SQLErrorA0
       type(c_ptr),intent(in),value :: henv
       type(c_ptr),intent(in),value :: hdbc
       type(c_ptr),intent(in),value :: hstmt
@@ -2111,7 +2111,7 @@ module fodbc
       szErrorMsg,cbErrorMsgMax,pcbErrorMsg) &
       bind(C, name="SQLErrorW")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLErrorW
+      !GCC$ ATTRIBUTES STDCALL :: SQLErrorW0
       type(c_ptr),intent(in),value :: henv
       type(c_ptr),intent(in),value :: hdbc
       type(c_ptr),intent(in),value :: hstmt
@@ -2128,7 +2128,7 @@ module fodbc
       (hstmt,szCursor,cbCursor) &
       bind(C, name="SQLSetCursorNameW")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLSetCursorNameW
+      !GCC$ ATTRIBUTES STDCALL :: SQLSetCursorNameW0
       type(c_ptr),intent(in),value :: hstmt
       integer(kind=c_short),intent(out) :: szCursor
       integer(kind=c_short),intent(in),value :: cbCursor
@@ -2141,7 +2141,7 @@ module fodbc
       szProcName,cbProcName) &
       bind(C, name="SQLProceduresW")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLProceduresW
+      !GCC$ ATTRIBUTES STDCALL :: SQLProceduresW0
       type(c_ptr),intent(in),value :: hstmt
       integer(kind=c_short),intent(out) :: szCatalogName
       integer(kind=c_short),intent(in),value :: cbCatalogName
@@ -2158,7 +2158,7 @@ module fodbc
       pfNullable) &
       bind(C, name="SQLDescribeParam")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLDescribeParam
+      !GCC$ ATTRIBUTES STDCALL :: SQLDescribeParam0
       type(c_ptr),intent(in),value :: hstmt
       integer(kind=c_short),intent(in),value :: ipar
       integer(kind=c_short),intent(out) :: pfSqlType
@@ -2174,7 +2174,7 @@ module fodbc
       StringLength,NumericAttribute) &
       bind(C, name="SQLColAttribute")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLColAttribute
+      !GCC$ ATTRIBUTES STDCALL :: SQLColAttribute0
       type(c_ptr),intent(in),value :: StatementHandle
       integer(kind=c_short),intent(in),value :: ColumnNumber
       integer(kind=c_short),intent(in),value :: FieldIdentifier
@@ -2190,7 +2190,7 @@ module fodbc
       (fHandleType,hInput,phOutput) &
       bind(C, name="SQLAllocHandleStd")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLAllocHandleStd
+      !GCC$ ATTRIBUTES STDCALL :: SQLAllocHandleStd0
       integer(kind=c_short),intent(in),value :: fHandleType
       type(c_ptr),intent(in),value :: hInput
       type(c_ptr),intent(out) :: phOutput
@@ -2202,7 +2202,7 @@ module fodbc
       (ConnectionHandle,Option,Value) &
       bind(C, name="SQLSetConnectOption")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLSetConnectOption
+      !GCC$ ATTRIBUTES STDCALL :: SQLSetConnectOption0
       type(c_ptr),intent(in),value :: ConnectionHandle
       integer(kind=c_short),intent(in),value :: Option
       integer(kind=c_long),intent(in),value :: Value
@@ -2214,7 +2214,7 @@ module fodbc
       (hstmt) &
       bind(C, name="SQLMoreResults")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLMoreResults
+      !GCC$ ATTRIBUTES STDCALL :: SQLMoreResults0
       type(c_ptr),intent(in),value :: hstmt
     end function SQLMoreResults0
   end interface SQLMoreResults
@@ -2225,7 +2225,7 @@ module fodbc
       StrLen_or_Ind) &
       bind(C, name="SQLGetData")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLGetData
+      !GCC$ ATTRIBUTES STDCALL :: SQLGetData0
       type(c_ptr),intent(in),value :: StatementHandle
       integer(kind=c_short),intent(in),value :: ColumnNumber
       integer(kind=c_short),intent(in),value :: TargetType
@@ -2245,7 +2245,7 @@ module fodbc
       szTableName,cbTableName,szTableType,cbTableType) &
       bind(C, name="SQLTablesW")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLTablesW
+      !GCC$ ATTRIBUTES STDCALL :: SQLTablesW0
       type(c_ptr),intent(in),value :: hstmt
       integer(kind=c_short),intent(out) :: szCatalogName
       integer(kind=c_short),intent(in),value :: cbCatalogName
@@ -2263,7 +2263,7 @@ module fodbc
       (StatementHandle) &
       bind(C, name="SQLCancel")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLCancel
+      !GCC$ ATTRIBUTES STDCALL :: SQLCancel0
       type(c_ptr),intent(in),value :: StatementHandle
     end function SQLCancel0
   end interface SQLCancel
@@ -2274,7 +2274,7 @@ module fodbc
       szTableName,cbTableName,fUnique,fAccuracy) &
       bind(C, name="SQLStatisticsA")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLStatisticsA
+      !GCC$ ATTRIBUTES STDCALL :: SQLStatisticsA0
       type(c_ptr),intent(in),value :: hstmt
       character(kind=c_char) :: szCatalogName
       integer(kind=c_short),intent(in),value :: cbCatalogName
@@ -2293,7 +2293,7 @@ module fodbc
       szTableName,cbTableName,fUnique,fAccuracy) &
       bind(C, name="SQLStatisticsW")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLStatisticsW
+      !GCC$ ATTRIBUTES STDCALL :: SQLStatisticsW0
       type(c_ptr),intent(in),value :: hstmt
       integer(kind=c_short),intent(out) :: szCatalogName
       integer(kind=c_short),intent(in),value :: cbCatalogName
@@ -2312,7 +2312,7 @@ module fodbc
       pfNullable) &
       bind(C, name="SQLDescribeParamA")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLDescribeParamA
+      !GCC$ ATTRIBUTES STDCALL :: SQLDescribeParamA0
       type(c_ptr),intent(in),value :: hstmt
       integer(kind=c_short),intent(in),value :: ipar
       integer(kind=c_short),intent(out) :: pfSqlType
@@ -2328,7 +2328,7 @@ module fodbc
       pcbValue) &
       bind(C, name="SQLGetDescFieldA")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLGetDescFieldA
+      !GCC$ ATTRIBUTES STDCALL :: SQLGetDescFieldA0
       type(c_ptr),intent(in),value :: hdesc
       integer(kind=c_short),intent(in),value :: iRecord
       integer(kind=c_short),intent(in),value :: iField
@@ -2344,7 +2344,7 @@ module fodbc
       szTableName,cbTableName) &
       bind(C, name="SQLPrimaryKeysW")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLPrimaryKeysW
+      !GCC$ ATTRIBUTES STDCALL :: SQLPrimaryKeysW0
       type(c_ptr),intent(in),value :: hstmt
       integer(kind=c_short),intent(out) :: szCatalogName
       integer(kind=c_short),intent(in),value :: cbCatalogName
@@ -2361,7 +2361,7 @@ module fodbc
       pcbValue) &
       bind(C, name="SQLGetDescFieldW")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLGetDescFieldW
+      !GCC$ ATTRIBUTES STDCALL :: SQLGetDescFieldW0
       type(c_ptr),intent(in),value :: hdesc
       integer(kind=c_short),intent(in),value :: iRecord
       integer(kind=c_short),intent(in),value :: iField
@@ -2377,7 +2377,7 @@ module fodbc
       pcbSqlStr) &
       bind(C, name="SQLNativeSqlW")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLNativeSqlW
+      !GCC$ ATTRIBUTES STDCALL :: SQLNativeSqlW0
       type(c_ptr),intent(in),value :: hdbc
       integer(kind=c_short),intent(out) :: szSqlStrIn
       integer(kind=c_long),intent(in),value :: cbSqlStrIn
@@ -2393,7 +2393,7 @@ module fodbc
       TableName,NameLength3,TableType,NameLength4) &
       bind(C, name="SQLTables")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLTables
+      !GCC$ ATTRIBUTES STDCALL :: SQLTables0
       type(c_ptr),intent(in),value :: StatementHandle
       character(kind=c_char) :: CatalogName
       integer(kind=c_short),intent(in),value :: NameLength1
@@ -2412,7 +2412,7 @@ module fodbc
       ParameterScale,ParameterValue,StrLen_or_Ind) &
       bind(C, name="SQLBindParam")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLBindParam
+      !GCC$ ATTRIBUTES STDCALL :: SQLBindParam0
       type(c_ptr),intent(in),value :: StatementHandle
       integer(kind=c_short),intent(in),value :: ParameterNumber
       integer(kind=c_short),intent(in),value :: ValueType
@@ -2429,7 +2429,7 @@ module fodbc
       (ConnectionHandle,StatementHandle) &
       bind(C, name="SQLAllocStmt")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLAllocStmt
+      !GCC$ ATTRIBUTES STDCALL :: SQLAllocStmt0
       type(c_ptr),intent(in),value :: ConnectionHandle
       type(c_ptr),intent(out) :: StatementHandle
     end function SQLAllocStmt0
@@ -2440,7 +2440,7 @@ module fodbc
       (EnvironmentHandle,ConnectionHandle,CompletionType) &
       bind(C, name="SQLTransact")
       use, intrinsic :: iso_c_binding
-      !GCC$ ATTRIBUTES STDCALL :: SQLTransact
+      !GCC$ ATTRIBUTES STDCALL :: SQLTransact0
       type(c_ptr),intent(in),value :: EnvironmentHandle
       type(c_ptr),intent(in),value :: ConnectionHandle
       integer(kind=c_short),intent(in),value :: CompletionType
