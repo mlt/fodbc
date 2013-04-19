@@ -712,6 +712,7 @@ module fodbc
     module procedure SQLBindColReal
     module procedure SQLBindColDouble
     module procedure SQLBindColTimeStamp
+    module procedure SQLBindColDate
   end interface SQLBindCol
 
   interface SQLForeignKeysA
@@ -1290,6 +1291,9 @@ module fodbc
     module procedure SQLBindParameterTimeStamp
     module procedure SQLBindParameterTimeStamp_
     module procedure SQLBindParameterTimeStamp__
+    module procedure SQLBindParameterDate
+    module procedure SQLBindParameterDate_
+    module procedure SQLBindParameterDate__
   end interface SQLBindParameter
 
   interface SQLSpecialColumnsW
@@ -2237,6 +2241,7 @@ module fodbc
     module procedure SQLGetDataReal
     module procedure SQLGetDataDouble
     module procedure SQLGetDataTimeStamp
+    module procedure SQLGetDataDate
   end interface SQLGetData
 
   interface SQLTablesW
@@ -2692,5 +2697,66 @@ contains
     ret = SQLBindParameter0(hstmt,ipar,SQL_PARAM_INPUT,SQL_TYPE_TIMESTAMP, &
     SQL_TYPE_TIMESTAMP, 0, 0_2,c_loc(rgbValue),c_sizeof(rgbValue),pcbValue)
   end function SQLBindParameterTimeStamp__
+
+  function SQLBindColDate &
+       (StatementHandle,ColumnNumber,TargetValue,StrLen_or_Ind) result(ret)
+    integer(kind=c_short) :: ret
+    type(c_ptr),intent(in),value :: StatementHandle
+    integer(kind=c_short),intent(in),value :: ColumnNumber
+    type(SQL_DATE_STRUCT),target :: TargetValue
+    integer(kind=c_long),intent(out),optional :: StrLen_or_Ind
+    ret = SQLBindCol0(StatementHandle,ColumnNumber,SQL_TYPE_DATE, &
+        c_loc(TargetValue),c_sizeof(TargetValue), StrLen_or_Ind)
+  end function SQLBindColDate
+
+  function SQLGetDataDate &
+        (StatementHandle,ColumnNumber,TargetValue,StrLen_or_Ind) result(ret)
+    integer(kind=c_short) :: ret
+    type(c_ptr),intent(in),value :: StatementHandle
+    integer(kind=c_short),intent(in),value :: ColumnNumber
+    type(SQL_DATE_STRUCT),target :: TargetValue
+    integer(kind=c_long),intent(out),optional :: StrLen_or_Ind
+    ret = SQLGetData0(StatementHandle,ColumnNumber,SQL_TYPE_DATE, &
+        c_loc(TargetValue),c_sizeof(TargetValue),StrLen_or_Ind)
+  end function SQLGetDataDate
+
+  function SQLBindParameterDate &
+    (hstmt,ipar,fParamType,fSqlType, &
+    cbColDef,ibScale,rgbValue,pcbValue) result(ret)
+    integer(kind=c_short) :: ret
+    type(c_ptr),intent(in),value :: hstmt
+    integer(kind=c_short),intent(in),value :: ipar
+    integer(kind=c_short),intent(in),value :: fParamType
+    integer(kind=c_short),intent(in),value :: fSqlType
+    integer(kind=c_long),intent(in),value :: cbColDef
+    integer(kind=c_short),intent(in),value :: ibScale
+    type(SQL_DATE_STRUCT),target :: rgbValue
+    integer(kind=c_long),intent(out),optional :: pcbValue
+    ret = SQLBindParameter0(hstmt,ipar,fParamType,SQL_TYPE_DATE,fSqlType, &
+    cbColDef,ibScale,c_loc(rgbValue),c_sizeof(rgbValue),pcbValue)
+  end function SQLBindParameterDate
+
+  function SQLBindParameterDate_ &
+    (hstmt,ipar,fParamType,rgbValue,pcbValue) result(ret)
+    integer(kind=c_short) :: ret
+    type(c_ptr),intent(in),value :: hstmt
+    integer(kind=c_short),intent(in),value :: ipar
+    integer(kind=c_short),intent(in),value :: fParamType
+    type(SQL_DATE_STRUCT),target :: rgbValue
+    integer(kind=c_long),intent(out),optional :: pcbValue
+    ret = SQLBindParameter0(hstmt,ipar,fParamType,SQL_TYPE_DATE, &
+    SQL_TYPE_DATE, 0, 0_2,c_loc(rgbValue),c_sizeof(rgbValue),pcbValue)
+  end function SQLBindParameterDate_
+
+  function SQLBindParameterDate__ &
+    (hstmt,ipar,rgbValue,pcbValue) result(ret)
+    integer(kind=c_short) :: ret
+    type(c_ptr),intent(in),value :: hstmt
+    integer(kind=c_short),intent(in),value :: ipar
+    type(SQL_DATE_STRUCT),target :: rgbValue
+    integer(kind=c_long),intent(out),optional :: pcbValue
+    ret = SQLBindParameter0(hstmt,ipar,SQL_PARAM_INPUT,SQL_TYPE_DATE, &
+    SQL_TYPE_DATE, 0, 0_2,c_loc(rgbValue),c_sizeof(rgbValue),pcbValue)
+  end function SQLBindParameterDate__
 
 end module fodbc
