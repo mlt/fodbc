@@ -7,4 +7,5 @@
   <type suffix="Real" sql="SQL_REAL" fortran="real(kind=c_float)" />
   <type suffix="Double" sql="SQL_DOUBLE" fortran="real(kind=c_double)" />
   <type suffix="TimeStamp" sql="SQL_TYPE_TIMESTAMP" fortran="type(SQL_TIMESTAMP_STRUCT)" />
+  <type suffix="Date" sql="SQL_TYPE_DATE" fortran="type(SQL_DATE_STRUCT)" />
 </types>
